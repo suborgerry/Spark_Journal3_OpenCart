@@ -1,0 +1,30 @@
+<?
+$title="Enter your message, and our manager will contact you shortly";
+$your_mail="E-Mail";
+$your_phone="Phone";
+$your_name="Your Name:";
+$message="Message:";
+$askPrice="Ask price";
+$invalid_code_img="Invalid code from the image";
+$empty_code = "Enter the code";
+$write_your_message="Write your message";
+$write_name="Write the name";
+$email_correct="Write a correct E-Mail";
+$input_empty = "The field must not be empty";
+$thanks_we_will_reply="Thank you, we will reply soon";
+$request_from_atr="Request from ";
+$request_from_atr_txt="I want to know the price of this product: ";
+$Error_sending_mail = "Message not sent!";
+$example = "Example:";
+$mail = "Email:";
+$phone = "Phone:";
+$example_email = "name@domain.com";
+$example_phone = "9876543210";
+$textarea_title = "At least 30 characters";
+$captcha_title = "Enter 6 digits";
+$ask_price_title = "Buyer has requested a price on your site ".$Sname." for spare:";
+$prod_link = "Link to the product:";
+$name = "Name:";
+$email_title = "Request price on the site ".$Sname;
+$required_txt = "* - required";
+?>

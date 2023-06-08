@@ -1,0 +1,75 @@
+{{ header }}
+<div id="account-address" class="container">
+    <div class="breadcrumb-wrapper">
+    <ul class="breadcrumb">
+      {% for breadcrumb in breadcrumbs %}
+        <li class="item is-active"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-right" viewBox="0 0 478.448 478.448"><g><g>
+                <polygon points="131.659,0 100.494,32.035 313.804,239.232 100.494,446.373 131.65,478.448 377.954,239.232"></polygon>
+              </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+        </li>
+      {% endfor %}
+    </ul>
+      <h1 class="page-heading">{{ text_address_book }}</h1>
+  </div>
+  {% if success %}
+  <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}</div>
+  {% endif %}
+  {% if error_warning %}
+  <div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}</div>
+  {% endif %}
+  <div class="row">{{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }}">{{ content_top }}
+<div class="page page-login">
+  <header class="">
+    {#        <button type="button" class="btn btn--secondary-accent btn--big address-new-toggle" id="AddressNewButton" aria-expanded="false"#}
+    {#                aria-owns="AddressNewForm">Add a New Address</button>#}
+    <a href="{{ add }}" class="btn btn--secondary-accent btn--big address-new-toggle">{{ button_new_address }}</a>
+    <p class="mt-3"><a class="text-link-hover" href="{{ back }}">{{ entry_return }}</a></p>
+  </header>
+
+  <div id="AddressNewForm" class="form-vertical hide">
+    <form method="post" action="{{ add }}" id="address_form_new" accept-charset="UTF-8"><input type="hidden" name="form_type" value="customer_address">
+      <input type="hidden" name="utf8" value="✓">
+      <h2 class="loginTitle">{{ button_new_address }}</h2>
+    </form>
+    <hr>
+  </div>
+  {% if addresses %}
+    <ul class="text-left">
+      {% for result in addresses %}
+        <li>
+          <div class="address">
+            <h2 class="loginTitle">Default</h2>
+            <p>{{ result.address }}</p>
+            {#            <div class="button-group">#}
+            {#              <button id="EditFormButton_7700657307723" type="button" class="btn btn--secondary address-edit-toggle" data-action="{{ result.update }}" aria-owns="EditAddress_7700657307723" aria-expanded="false">#}
+            {#                Edit#}
+            {#              </button>#}
+            {#              <button type="button" class="btn btn--secondary address-delete" data-target="{{ result.delete }}" data-confirm-message="Are you sure you wish to delete this address?">#}
+            {#                Delete#}
+            {#              </button>#}
+            {#            </div>#}
+            <div class="button-group">
+              <a href="{{ result.update }}" class="btn btn--secondary">{{ button_edit }}</a> &nbsp;
+              <a href = "{{ result.delete }}" data-toggle="tooltip" title="{{ button_delete }}" class="btn btn-danger" onclick="return confirm('{{ text_confirm }}')">{{ button_delete }}</a>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>{{ text_empty }}</p>
+  {% endif %}
+</div>
+{{ content_bottom }}</div>
+{{ column_right }}</div>
+</div>
+{{ footer }}

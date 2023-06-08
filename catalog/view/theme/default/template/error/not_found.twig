@@ -1,0 +1,49 @@
+{{ header }}
+<div id="error-not-found" class="container">
+    <div class="breadcrumb-wrapper">
+    <ul class="breadcrumb">
+      {% for breadcrumb in breadcrumbs %}
+        <li class="item is-active"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-right" viewBox="0 0 478.448 478.448"><g><g>
+                <polygon points="131.659,0 100.494,32.035 313.804,239.232 100.494,446.373 131.65,478.448 377.954,239.232"></polygon>
+              </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="row">{{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }}">{{ content_top }}
+{#      <h1>{{ heading_title }}</h1>#}
+{#      <p>{{ text_error }}</p>#}
+{#      <div class="buttons clearfix">#}
+{#        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>#}
+{#      </div>#}
+{#      {{ content_bottom }}</div>#}
+{#    {{ column_right }}</div>#}
+    <div class="page page-cart">
+        <div data-section-id="template--14138547339339__main" data-section-type="cart-page">
+            <div class="empty-page-content text-center">
+                <h1>{{ heading_title }}</h1>
+                <p class="cart--empty-message">{{ text_error }}</p>
+                <div class="cookie-message">
+                    <p>Enable cookies to use the shopping cart</p>
+                </div>
+                <a href="{{ continue }}" class="btn btn--has-icon-after cart__continue-btn btn--primary" aria-label="link">
+                    {{ button_continue }}
+                    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-arrow-right" viewBox="0 0 20 8"><path d="M15.186.445c.865.944 1.614 1.662 2.246 2.154.631.491 1.227.857 1.787 1.098v.44a9.933 9.933 0 0 0-1.875 1.196c-.606.485-1.328 1.196-2.168 2.134h-.752c.612-1.309 1.253-2.315 1.924-3.018H.77v-.986h15.577c-.495-.632-.84-1.1-1.035-1.406-.196-.306-.486-.843-.87-1.612h.743z" fill="#000" fill-rule="evenodd"></path></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+            {{ content_bottom }}</div>
+        {{ column_right }}</div>
+</div>
+{{ footer }}

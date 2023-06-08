@@ -1,0 +1,152 @@
+{#{{ type }}#}
+{% if page == 'checkout' %}
+    {% if type == 'select' or type == 'select2' %}
+        <div class="vTXBW _10vrn9p1 _10vrn9p0 _10vrn9p6">
+            <div>
+                <div class="j2JE7">
+                    <label for="{{id}}" class="QOQ2V NKh24">
+                                                    <span  class="KBYKh">
+                                                        <span  class="rermvf1 _1fragem7q _1fragem7s _1fragem15">{{label}}</span></span></label>
+                    <select id="{{id}}" name="{{ name }}" {{ bootstrap ? 'data-theme="bootstrap"' : '' }} {{ type == 'select2' ? 'data-type="select2"' : '' }} {{ reload ? 'data-onchange="reloadAll"' : ''}} class="_b6uH RR8sg vYo81 RGaKd">
+                        {% for info in values %}
+                            <option value="{{ info['id'] | escape }}" {{ value == info['id'] ? 'selected="selected"' : '' }}>{{ info['text'] }}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="TUEJq">
+                        <span class="_1fragem34 _1fragem10 _1fragem9q _1fragem9p _1fragem15 a8x1wug a8x1wum">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"  focusable="false" aria-hidden="true"  class="a8x1wuo _1fragem15 _1fragem34 _1fragem9q _1fragem9p"><path  stroke-linecap="round" stroke-linejoin="round"   d="m11.9 5.6-4.653 4.653a.35.35 0 0 1-.495 0L2.1 5.6"></path></svg></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        {% if id=='shipping_address_firstname' %}
+            <div class="_1fragemaf _1fragem1b _1mrl40q3 _1fragem1o _1fragem25 _16s97g73 _16s97g75 _16s97g7b _16s97g7d"   style="--_16s97g72: minmax(0, 1fr); --_16s97g74: minmax(0, 1fr); --_16s97g7a: minmax(0, 1fr); --_16s97g7c: minmax(0, 1fr);">
+        {% endif %}
+        <div class="_7ozb2u2 _1fragem1r _1fragem28 _1fragemaf _1fragem1b _10vrn9p1 _10vrn9p0 _10vrn9p6">
+            <div class="_1fragemaf">
+                <label for="{{id}}"  class="cektnc3 _1fragemad _1fragemac _1fragem9v _1fragemb4 _1fragemat _1fragemap _1fragemb2 cektnc6 _1fragema7">
+                    <span  class="cektnc9">
+                        <span class="rermvf1 _1fragem7q _1fragem7s _1fragem15">{{label}}</span>
+                    </span>
+                </label>
+                <div class="_7ozb2u4 _1fragemaf _1fragem1b _1fragem14 _1fragemat _1fragemap _1fragemb2 _1fragemb3 _7ozb2uc _7ozb2un _7ozb2up _7ozb2uj">
+                    <input id="{{ id }}" name="{{ name }}" type="{{ type }}"  {{ type == 'password' ? 'data-validate-on="keyup"' : '' }}
+                           value="{{ value }}" placeholder="{{ placeholder }}" {{ attrs }} {{ reload ? 'data-onchange="reloadAll"' : ''}} aria-required="false"
+                           aria-labelledby="TextField1-label" autocomplete="shipping given-name"
+                           class="_7ozb2uu _1fragemaf _1fragemb4 _1fragem34 _1fragemab _7ozb2uv _7ozb2uz _1fragemat _1fragemap _1fragemb2 _7ozb2u15 _7ozb2u1n">
+                </div>
+            </div>
+        </div>
+                {% if id=='shipping_address_lastname' %}
+                    </div>
+                {% endif %}
+{#        <input  class="form-control" type="{{ type }}" name="{{ name }}" id="{{ id }}" {{ type == 'password' ? 'data-validate-on="keyup"' : '' }} value="{{ value }}" placeholder="{{ placeholder }}" {{ attrs }} {{ reload ? 'data-onchange="reloadAll"' : ''}}>#}
+    {% endif %}
+{% else %}
+<div class="grid__item medium-up--one-half {% if required %}required{% endif %} row-{{id}}">
+        {% if  type != 'switcher'%}
+        <label class="form-label {{page == 'checkout' ? 'col-sm-4' : 'col-sm-2' }}" for="{{id}}">{{label}}</label>
+        {% endif %}
+    <div class="{{page == 'checkout' ? 'col-sm-8' : 'col-sm-10'}}">
+      {% if type == 'select' or type == 'select2' %}
+{#        <select class="form-control" name="{{ name }}" id="{{ id }}" {{ bootstrap ? 'data-theme="bootstrap"' : '' }} {{ type == 'select2' ? 'data-type="select2"' : '' }} {{ reload ? 'data-onchange="reloadAll"' : ''}}>#}
+{#          {% for info in values %}#}
+{#            <option value="{{ info['id'] | escape }}" {{ value == info['id'] ? 'selected="selected"' : '' }}>{{ info['text'] }}</option>#}
+{#          {% endfor %}#}
+{#        </select>#}
+                <select id="{{id}}" name="{{ name }}" {{ bootstrap ? 'data-theme="bootstrap"' : '' }} {{ type == 'select2' ? 'data-type="select2"' : '' }} {{ reload ? 'data-onchange="reloadAll"' : ''}} class="form-control">
+                    {% for info in values %}
+                        <option value="{{ info['id'] | escape }}" {{ value == info['id'] ? 'selected="selected"' : '' }}>{{ info['text'] }}</option>
+                    {% endfor %}
+                </select>
+      {% elseif type == 'radio' %}
+        <div>
+        {% for info in values %}
+          <div class="radio">
+            <label><input type="radio" name="{{ name }}" id="{{ id }}_{{ info['id'] }}" value="{{ info['id'] | escape }}" {{ value == info['id'] ? 'checked="checked"' : '' }} {{ reload ? 'data-onchange="reloadAll"' : '' }}>{{ info['text'] }}</label>
+          </div>
+        {% endfor %}
+        </div>
+      {% elseif type == 'checkbox' %}
+        <div>
+        {% for info in values %}
+{#          <div class="checkbox">#}
+{#            <label><input type="checkbox" name="{{ name }}[]" id="{{ id }}_{{ info['id'] }}" value="{{ info['id'] | escape }}" {{ info['id'] in value ? 'checked="checked"' : '' }} {{ reload ? 'data-onchange="reloadAll"' : ''}}>{{ info['text'] }}</label>#}
+{#          </div>#}
+            <input type="checkbox" name="{{ name }}[]" id="{{ id }}_{{ info['id'] }}" value="{{ info['id'] | escape }}" {{ info['id'] in value ? 'checked="checked"' : '' }} {{ reload ? 'data-onchange="reloadAll"' : ''}}>
+            <label for="{{ id }}_{{ info['id'] }}" class="form-label">{{ info['text'] }}</label>
+        {% endfor %}
+        </div>
+      {% elseif type == 'switcher' %}
+{#        <div>#}
+{#          <div class="checkbox 2">#}
+{#            <label><input type="checkbox" name="{{ name }}" id="{{ id }}" data-unchecked-value="0" value="1" {{ value == '1' ? 'checked="checked"' : '' }} {{ reload ? 'data-onchange="reloadAll"' : ''}}>{{ placeholder }}</label>#}
+{#          </div>#}
+{#        </div>#}
+            <input type="checkbox" name="{{ name }}" id="{{ id }}" data-unchecked-value="0" value="1" {{ value == '1' ? 'checked="checked"' : '' }} {{ reload ? 'data-onchange="reloadAll"' : ''}}>
+            <label for="{{ id }}" class="form-label">{{ label }}</label>
+      {% elseif type == 'textarea' %}
+        <textarea class="form-control" name="{{ name }}" id="{{ id }}" placeholder="{{ placeholder }}" {{ reload ? 'data-onchange="reloadAll"' : ''}}>{{ value }}</textarea>
+      {% elseif type == 'captcha' %}
+        {% if site_key %}
+          <script src="https://www.google.com/recaptcha/api.js?hl={{ lang }}&onload=recaptchaInit&render=explicit" type="text/javascript" async defer></script>
+          <input type="hidden" name="{{ name }}" id="{{ id }}" value="{{ value }}">
+          <script type="text/javascript">
+            function recaptchaCallback(value) {
+              $('#{{ id }}').val(value).trigger('change');
+            }
+            function recaptchaInit(){
+              grecaptcha.render('simple-recaptcha');
+            }
+          </script>
+          <div id="simple-recaptcha" data-sitekey="{{ site_key }}" data-callback="recaptchaCallback"></div>
+        {% else %}
+          <input type="text" class="form-control" name="{{ name }}" id="{{ id }}" value="" placeholder="{{ placeholder }}" {{ reload ? 'data-onchange="reloadAll"' : ''}}>
+          <div class="simple-captcha-container"><img src="index.php?{{ additional_path }}route=common/simple_connector/captcha&t={{ time }}" alt="" id="captcha" /></div>
+        {% endif %}
+      {% elseif type == 'file' %}
+        <input type="button" value="{{ button_upload }}" data-file="{{ id }}" class="button form-control">
+        <div id="text_{{ id }}" style="margin-top:3px;max-width:200px;">{{ filename }}</div>
+        <input type="hidden" name="{{ name }}" id="{{ id }}" value="{{ value }}">
+      {% elseif type == 'date' %}
+        <div class="input-group date">
+          <input class="form-control" type="text" data-type="date" name="{{ name }}" id="{{ id }}" value="{{ value }}" placeholder="{{ placeholder }}" {{ attrs }} {{ reload ? 'data-onchange="reloadAll"' : ''}}>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+          </span>
+        </div>
+      {% elseif type == 'time' %}
+      <div class="input-group time">
+        <input class="form-control" type="text" data-type="time" name="{{ name }}" id="{{ id }}" value="{{ value }}" placeholder="{{ placeholder }}" {{ attrs }} {{ reload ? 'data-onchange="reloadAll"' : ''}}>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default"><i class="fa fa-clock-o"></i></button>
+        </span>
+      </div>
+      {% elseif type == 'datetime' %}
+      <div class="input-group datetime">
+        <input class="form-control" type="text" data-type="datetime" name="{{ name }}" id="{{ id }}" value="{{ value }}" placeholder="{{ placeholder }}" {{ attrs }} {{ reload ? 'data-onchange="reloadAll"' : ''}}>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+        </span>
+      </div>
+      {% else %}
+        <input  class="form-control" type="{{ type }}" name="{{ name }}" id="{{ id }}" {{ type == 'password' ? 'data-validate-on="keyup"' : '' }} value="{{ value }}" placeholder="{{ placeholder }}" {{ attrs }} {{ reload ? 'data-onchange="reloadAll"' : ''}}>
+      {% endif %}
+      {% if rules is not empty %}
+        <div class="simplecheckout-rule-group" data-for="{{ id }}">
+          {% for rule in rules %}
+            <div {{ rule['display'] and not rule['passed'] ? '' : 'style="display:none;"' }} data-for="{{ id }}" data-for-type="{{ type }}"  data-rule="{{ rule['id'] }}" class="simplecheckout-error-text simplecheckout-rule" {{ rule['attrs'] }}>{{ rule['text'] }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% if description %}
+        <div class="simplecheckout-tooltip" data-for="{{ id }}">{{ description }}</div>
+      {% endif %}
+    </div>
+ </div>
+{% endif %}
+
+
+
+

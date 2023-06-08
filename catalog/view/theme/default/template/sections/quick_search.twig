@@ -1,0 +1,520 @@
+<div class="item item--quickSearch">
+    <div class="search-form1" data-ajax-search>
+        <div class="header-search">
+            {{ cm_search }}
+{#            <form action="/carparts/search/" method="get"#}
+{#                  class="input-group search-bar" role="search">#}
+{#                <input type="hidden" name="type" value="product">#}
+{#                <input type="text" name="q" value="" placeholder="Search for a product..."#}
+{#                       class="input-group-field header-search__input"#}
+{#                       aria-label="Search Site" autocomplete="off">#}
+{#                <button type="submit" class="btn-search icon-search" title="search">#}
+{#                    <svg class="icon">#}
+{#                        <use xlink:href="#icon-search"/>#}
+{#                    </svg>#}
+{#                </button>#}
+{#            </form>#}
+
+            <div class="quickSearchResultsWrap" style="display: none;">
+
+                <div class="custom-scrollbar">
+
+                    <div class="header-block header-search__trending">
+
+                        <h3 class="title">
+                            trending
+                        </h3>
+
+                        <ul class="list-tags">
+                            {% for tag in tags %}
+                            <li class="item-tag">
+                                <a href="/carparts/search/{{ tag }}/"
+                                   class="highlight">
+                                    <svg class="icon">
+                                        <use xlink:href="#icon-search"/>
+                                    </svg>
+                                    {{ tag }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+
+                    <div class="header-block header-search__product">
+                        <h3 class="title">
+                            Popular Products
+                        </h3>
+                        <div class="search__products">
+                            <div class="halo-row column-3">
+
+                                <div class="halo-item">
+
+                                    <div class="product-card layout-1" data-product-card>
+                                        <div class="product-image">
+
+                                            <a class="product_wishlist wishlist "
+                                               aria-label="wishlist" data-icon-wishlist
+                                               href="/"
+                                               data-product-handle="dapibus-phoncus-justo-ustectin-consectetur-massang"
+                                               data-id="4356677763147">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon-heart"/>
+                                                </svg>
+                                            </a>
+
+
+                                            <div class="product_badges">
+
+
+                                            </div>
+                                            <a class="product-link image-swap"
+                                               href="collections/vendors/products/dapibus-phoncus-justo-ustectin-consectetur-massang.html"
+                                               aria-label="link">
+
+                                                <img class="image-one lazyload"
+                                                     src="https://cdn.shopify.com/s/files/1/0278/4434/5931/t/19/assets/loading.svg?v=146762436508237652511627262475"
+                                                     data-src="//cdn.shopify.com/s/files/1/0278/4434/5931/products/exterior-6.jpg?v=1573642538"
+                                                     data-sizes="auto"
+                                                     alt="Dapibus phoncus justo ustectin consectetur massang"
+                                                     data-image>
+                                                <img class="image-two lazyload"
+                                                     src="https://cdn.shopify.com/s/files/1/0278/4434/5931/t/19/assets/loading.svg?v=146762436508237652511627262475"
+                                                     data-src="//cdn.shopify.com/s/files/1/0278/4434/5931/products/exterior-6d.jpg?v=1573642538"
+                                                     data-sizes="auto"
+                                                     alt="Dapibus phoncus justo ustectin consectetur massang"
+                                                     data-image>
+
+                                            </a>
+
+                                            <a class="product-quickview"
+                                               aria-label="quickview"
+                                               href="javascript:void(0)"
+                                               id="dapibus-phoncus-justo-ustectin-consectetur-massang"
+                                               data-quickview>
+                                                Quick View
+                                            </a>
+
+
+                                            <div class="product-action">
+                                                <form action="/cart/add"
+                                                      method="post" class="variants"
+                                                      id="list-product-form-4356677763147"
+                                                      data-id="product-actions-4356677763147"
+                                                      enctype="multipart/form-data">
+
+
+                                                    <input type="hidden" name="id"
+                                                           value="31244660670539"/>
+                                                    <input type="hidden" name="quantity"
+                                                           value="1"/>
+
+
+                                                    <button data-btn-addToCart
+                                                            class="btn product-btn"
+                                                            type="submit"
+                                                            data-form-id="#list-product-form-4356677763147">
+                                                        Add to cart
+                                                    </button>
+
+
+                                                </form>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="product-content">
+
+                                            <div class="product-vendor">
+                                                <a href="collections/vendors@q=Sabeco&#32;Car®.html"
+                                                   title="Sabeco Car®">Sabeco Car®</a>
+                                            </div>
+
+
+                                            <h4 class="product-title">
+                                                <a href="collections/vendors/products/dapibus-phoncus-justo-ustectin-consectetur-massang.html"
+                                                   aria-label="title">Dapibus phoncus justo
+                                                    ustectin consectetur massang</a>
+                                            </h4>
+
+
+                                            <div class="product-reviews"><span
+                                                        class="spr-badge"
+                                                        data-id="4356677763147"
+                                                        id="spr_badge_4356677763147"
+                                                        data-rating=""><i
+                                                            class="spr-icon spr-icon-star-empty"></i><i
+                                                            class="spr-icon spr-icon-star-empty"></i><i
+                                                            class="spr-icon spr-icon-star-empty"></i><i
+                                                            class="spr-icon spr-icon-star-empty"></i><i
+                                                            class="spr-icon spr-icon-star-empty"></i></span>
+                                            </div>
+
+
+                                            <!-- snippet/product-price.liquid -->
+
+
+                                            <div class="product-price " data-price>
+
+        <span class="price-item price-item--regular" data-regular-price>
+            <span class=money>$580.00</span>
+        </span>
+                                                <span class="price-item price-item--sale"
+                                                      data-sale-price></span>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="halo-item">
+
+                                    <div class="product-card layout-1" data-product-card>
+                                        <div class="product-image">
+
+                                            <a class="product_wishlist wishlist "
+                                               aria-label="wishlist" data-icon-wishlist
+                                               href="/#"
+                                               data-product-handle="tincidunt-squetion-leogravida-loreu-acmongue-scelerisque"
+                                               data-id="4356681400395">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon-heart"/>
+                                                </svg>
+                                            </a>
+
+
+                                            <div class="product_badges">
+
+
+                                                <div class="badge sale-badge sale-badge-2"
+                                                     data-label-sale>-12%
+                                                </div>
+
+
+                                                <div class="badge custom-badge">Custom
+                                                    Label
+                                                </div>
+
+                                            </div>
+                                            <a class="product-link image-swap"
+                                               href="products/tincidunt-squetion-leogravida-loreu-acmongue-scelerisque.html"
+                                               aria-label="link">
+
+                                                <img class="image-one lazyload"
+                                                     src="https://cdn.shopify.com/s/files/1/0278/4434/5931/t/19/assets/loading.svg?v=146762436508237652511627262475"
+                                                     data-src="//cdn.shopify.com/s/files/1/0278/4434/5931/products/exterior-5b.jpg?v=1573642638"
+                                                     data-sizes="auto"
+                                                     alt="Tincidunt squetion leogravida loreu acmongue scelerisque"
+                                                     data-image>
+                                                <img class="image-two lazyload"
+                                                     src="https://cdn.shopify.com/s/files/1/0278/4434/5931/t/19/assets/loading.svg?v=146762436508237652511627262475"
+                                                     data-src="//cdn.shopify.com/s/files/1/0278/4434/5931/products/exterior-5.jpg?v=1573642638"
+                                                     data-sizes="auto"
+                                                     alt="Tincidunt squetion leogravida loreu acmongue scelerisque"
+                                                     data-image>
+
+                                            </a>
+
+                                            <a class="product-quickview"
+                                               aria-label="quickview"
+                                               href="javascript:void(0)"
+                                               id="tincidunt-squetion-leogravida-loreu-acmongue-scelerisque"
+                                               data-quickview>
+                                                Quick View
+                                            </a>
+
+
+                                            <div class="product-action">
+                                                <form action="/cart/add"
+                                                      method="post" class="variants"
+                                                      id="list-product-form-4356681400395"
+                                                      data-id="product-actions-4356681400395"
+                                                      enctype="multipart/form-data">
+
+
+                                                    <input type="hidden" name="id"
+                                                           value="31244682199115"/>
+                                                    <input type="hidden" name="quantity"
+                                                           value="1"/>
+
+
+                                                    <button data-btn-addToCart
+                                                            class="btn product-btn"
+                                                            type="submit"
+                                                            data-form-id="#list-product-form-4356681400395">
+                                                        Add to cart
+                                                    </button>
+
+
+                                                </form>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="product-content">
+
+                                            <div class="product-vendor">
+                                                <a href="collections/vendors@q=Pledfer&#32;Lynk®.html"
+                                                   title="Pledfer Lynk®">Pledfer Lynk®</a>
+                                            </div>
+
+
+                                            <h4 class="product-title">
+                                                <a href="products/tincidunt-squetion-leogravida-loreu-acmongue-scelerisque.html"
+                                                   aria-label="title">Tincidunt squetion
+                                                    leogravida loreu acmongue
+                                                    scelerisque</a>
+                                            </h4>
+
+
+                                            <div class="product-reviews"><span
+                                                        class="spr-badge"
+                                                        data-id="4356681400395"
+                                                        id="spr_badge_4356681400395"
+                                                        data-rating=""><i
+                                                            class="spr-icon spr-icon-star-empty"></i><i
+                                                            class="spr-icon spr-icon-star-empty"></i><i
+                                                            class="spr-icon spr-icon-star-empty"></i><i
+                                                            class="spr-icon spr-icon-star-empty"></i><i
+                                                            class="spr-icon spr-icon-star-empty"></i></span>
+                                            </div>
+
+
+                                            <!-- snippet/product-price.liquid -->
+
+
+                                            <div class="product-price price--on-sale"
+                                                 data-price>
+
+        <span class="price-item price-item--regular" data-regular-price>
+            <span class=money>$79.00</span>
+        </span>
+                                                <span class="price-item price-item--sale"
+                                                      data-sale-price>
+            <span class=money>$69.00</span>
+        </span>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="halo-item">
+
+                                    <div class="product-card layout-1" data-product-card>
+                                        <div class="product-image">
+
+                                            <a class="product_wishlist wishlist "
+                                               aria-label="wishlist" data-icon-wishlist
+                                               href="index.html#"
+                                               data-product-handle="viverra-chullam-tronval-ullang-facilisis-felis-rutrum-lectus"
+                                               data-id="4356681695307">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon-heart"/>
+                                                </svg>
+                                            </a>
+
+
+                                            <div class="product_badges">
+
+
+                                            </div>
+                                            <a class="product-link image-swap"
+                                               href="products/viverra-chullam-tronval-ullang-facilisis-felis-rutrum-lectus.html"
+                                               aria-label="link">
+
+                                                <img class="image-one lazyload"
+                                                     src="https://cdn.shopify.com/s/files/1/0278/4434/5931/t/19/assets/loading.svg?v=146762436508237652511627262475"
+                                                     data-src="//cdn.shopify.com/s/files/1/0278/4434/5931/products/exterior-2g.jpg?v=1573642645"
+                                                     data-sizes="auto"
+                                                     alt="Viverra chullam tronval ullang facilisis felis rutrum lectus"
+                                                     data-image>
+                                                <img class="image-two lazyload"
+                                                     src="https://cdn.shopify.com/s/files/1/0278/4434/5931/t/19/assets/loading.svg?v=146762436508237652511627262475"
+                                                     data-src="//cdn.shopify.com/s/files/1/0278/4434/5931/products/exterior-2h.jpg?v=1573642645"
+                                                     data-sizes="auto"
+                                                     alt="Viverra chullam tronval ullang facilisis felis rutrum lectus"
+                                                     data-image>
+
+                                            </a>
+
+                                            <a class="product-quickview"
+                                               aria-label="quickview"
+                                               href="javascript:void(0)"
+                                               id="viverra-chullam-tronval-ullang-facilisis-felis-rutrum-lectus"
+                                               data-quickview>
+                                                Quick View
+                                            </a>
+
+
+                                            <div class="product-action">
+                                                <form action="/cart/add"
+                                                      method="post" class="variants"
+                                                      id="list-product-form-4356681695307"
+                                                      data-id="product-actions-4356681695307"
+                                                      enctype="multipart/form-data">
+
+
+                                                    <input type="hidden" name="id"
+                                                           value="31244683608139"/>
+                                                    <input type="hidden" name="quantity"
+                                                           value="1"/>
+
+
+                                                    <button data-btn-addToCart
+                                                            class="btn product-btn"
+                                                            type="submit"
+                                                            data-form-id="#list-product-form-4356681695307">
+                                                        Add to cart
+                                                    </button>
+
+
+                                                </form>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="product-content">
+
+                                            <div class="product-vendor">
+                                                <a href="collections/vendors@q=Liquid&#32;Future®.html"
+                                                   title="Liquid Future®">Liquid Future®</a>
+                                            </div>
+
+
+                                            <h4 class="product-title">
+                                                <a href="products/viverra-chullam-tronval-ullang-facilisis-felis-rutrum-lectus.html"
+                                                   aria-label="title">Viverra chullam
+                                                    tronval ullang facilisis felis rutrum
+                                                    lectus</a>
+                                            </h4>
+
+
+                                            <div class="product-reviews"><span
+                                                        class="spr-badge"
+                                                        data-id="4356681695307"
+                                                        id="spr_badge_4356681695307"
+                                                        data-rating=""><i
+                                                            class="spr-icon spr-icon-star-empty"></i><i
+                                                            class="spr-icon spr-icon-star-empty"></i><i
+                                                            class="spr-icon spr-icon-star-empty"></i><i
+                                                            class="spr-icon spr-icon-star-empty"></i><i
+                                                            class="spr-icon spr-icon-star-empty"></i></span>
+                                            </div>
+
+
+                                            <!-- snippet/product-price.liquid -->
+
+
+                                            <div class="product-price " data-price>
+
+        <span class="price-item price-item--regular" data-regular-price>
+            <span class=money>$280.00</span>
+        </span>
+                                                <span class="price-item price-item--sale"
+                                                      data-sale-price></span>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="header-search__results-wrapper"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <script id="search-results-template" type="text/template7">
+            {% set is_loading=false %}
+{% set is_show=false %}
+{% set has_results=false %}
+{% set on_sale=false %}
+                    {%if is_loading%}
+                        <div class="header-search__results">
+                            <div class="header-search__spinner-container">
+                                <img src="https://cdn.shopify.com/s/files/1/0278/4434/5931/t/19/assets/loading.svg?v=146762436508237652511627262475"
+                                     alt="">
+                            </div>
+                        </div>
+
+                    {%else%}
+
+                        {% if is_show %}
+                            <div class="header-search__results header-block">
+
+                                {%if has_results %}
+                                    <h3 class="title">Popular Products</h3>
+
+                                    <div class="search__products">
+                                        <div class="halo-row column-3">
+                                            {%for result in results%}
+                                                <div class="halo-item">
+                                                    <div class="product-card">
+                                                        <div class="product-image">
+                                                            <a href="/{{url}}"
+                                                               class="product-link">
+                                                                <img src="https://spark-theme-automotive.myshopify.com/{{image}}"
+                                                                     alt="{{image_alt}}">
+                                                            </a>
+                                                        </div>
+                                                        <div class="product-content">
+                                                            <div class="product-vendor">{{vendor}}</div>
+                                                            <div class="product-title">
+                                                                <a href="/{{url}}">{{title}}</a>
+                                                            </div>
+                                                            {%if on_sale%}
+                                                                <div class="product-price price--on-sale">
+                                          <span class="price-item price-item--regular" data-regular-price>
+                                              {{ compare_at_price }}
+                                          </span>
+                                                                    <span class="price-item price-item--sale">
+                                              {{ price }}
+                                          </span>
+                                                                </div>
+                                                            {%else%}
+                                                                <div class="product-price">
+                                          <span class="price-item price-item--regular" data-regular-price>
+                                              {{ price }}
+                                          </span>
+                                                                </div>
+                                                            {%endif%}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {%endfor%}
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <a href="/{{results_url}}"
+                                           class="text-results header-search__see-more"
+                                           data-results-count="{{results_count}}">
+                                            <span class="text">{{results_label}}</span> <span>({{results_count}})</span>
+                                        </a>
+                                    </div>
+                                {%else%}
+
+                                    <p class="header-search__no-results text-results">{{ results_label }}</p>
+                                {%endif%}
+
+                            </div>
+                        {%endif%}
+                    {%endif%}
+
+        </script>
+    </div>
+</div>

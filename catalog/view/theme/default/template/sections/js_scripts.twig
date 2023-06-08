@@ -1,0 +1,188 @@
+<script src="catalog/view/javascript/vendor.js"
+        defer="defer"></script>
+<script src="catalog/view/javascript/lazysizes.js?v=84414966064882348651627262475"
+        async="async"></script>
+<script src="catalog/view/javascript/api.jquery.js"
+        async="async"></script>
+<script src="catalog/view/javascript/theme.js?v=82280544234960969391675387838"
+        defer="defer"></script>
+
+<script type="text/javascript">
+    function setupLanguageSwitcher() {
+        var languages = buildLanguageList();
+        var shopDomain = 'https://autoparts.fun/';
+        var primaryLanguage = languages.find(function (x) {
+            return x.primary;
+        });
+        var logoLanguage = languages.find(function (x) {
+            return x.logo;
+        });
+        var defaultLocale = primaryLanguage ? primaryLanguage.iso_code : 'en';
+        var currentLocale = findCurrentLocale(languages, defaultLocale);
+        var containers = document.querySelectorAll('[data-language-switcher]');
+        if (containers && containers.length) {
+            containers.forEach(createDropdown(defaultLocale, currentLocale, shopDomain, languages, logoLanguage));
+        }
+    }
+
+    function buildLanguageList() {
+        return [
+            {
+                name: 'English',
+                endonym_name: 'English',
+                iso_code: 'en',
+                primary: true,
+                logo: '<svg viewbox="0 0 512 512" id="icon-eng" class="icon-flag">     <circle style="fill:#F0F0F0;" cx="256" cy="256" r="256"></circle>     <g>         <path style="fill:#0052B4;" d="M52.92,100.142c-20.109,26.163-35.272,56.318-44.101,89.077h133.178L52.92,100.142z"></path>         <path style="fill:#0052B4;" d="M503.181,189.219c-8.829-32.758-23.993-62.913-44.101-89.076l-89.075,89.076H503.181z"></path>         <path style="fill:#0052B4;" d="M8.819,322.784c8.83,32.758,23.993,62.913,44.101,89.075l89.074-89.075L8.819,322.784L8.819,322.784             z"></path>         <path style="fill:#0052B4;" d="M411.858,52.921c-26.163-20.109-56.317-35.272-89.076-44.102v133.177L411.858,52.921z"></path>         <path style="fill:#0052B4;" d="M100.142,459.079c26.163,20.109,56.318,35.272,89.076,44.102V370.005L100.142,459.079z"></path>         <path style="fill:#0052B4;" d="M189.217,8.819c-32.758,8.83-62.913,23.993-89.075,44.101l89.075,89.075V8.819z"></path>         <path style="fill:#0052B4;" d="M322.783,503.181c32.758-8.83,62.913-23.993,89.075-44.101l-89.075-89.075V503.181z"></path>         <path style="fill:#0052B4;" d="M370.005,322.784l89.075,89.076c20.108-26.162,35.272-56.318,44.101-89.076H370.005z"></path>     </g>     <g>         <path style="fill:#D80027;" d="M509.833,222.609h-220.44h-0.001V2.167C278.461,0.744,267.317,0,256,0             c-11.319,0-22.461,0.744-33.391,2.167v220.44v0.001H2.167C0.744,233.539,0,244.683,0,256c0,11.319,0.744,22.461,2.167,33.391             h220.44h0.001v220.442C233.539,511.256,244.681,512,256,512c11.317,0,22.461-0.743,33.391-2.167v-220.44v-0.001h220.442             C511.256,278.461,512,267.319,512,256C512,244.683,511.256,233.539,509.833,222.609z"></path>         <path style="fill:#D80027;" d="M322.783,322.784L322.783,322.784L437.019,437.02c5.254-5.252,10.266-10.743,15.048-16.435             l-97.802-97.802h-31.482V322.784z"></path>         <path style="fill:#D80027;" d="M189.217,322.784h-0.002L74.98,437.019c5.252,5.254,10.743,10.266,16.435,15.048l97.802-97.804             V322.784z"></path>         <path style="fill:#D80027;" d="M189.217,189.219v-0.002L74.981,74.98c-5.254,5.252-10.266,10.743-15.048,16.435l97.803,97.803             H189.217z"></path>         <path style="fill:#D80027;" d="M322.783,189.219L322.783,189.219L437.02,74.981c-5.252-5.254-10.743-10.266-16.435-15.047             l-97.802,97.803V189.219z"></path></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g> </svg>',
+            },
+            {
+                name: 'German',
+                endonym_name: 'Deutsch',
+                iso_code: 'de',
+                primary: false,
+                logo: '<svg viewbox="0 0 512 512" id="icon-germany" class="icon-flag">     <path style="fill:#FFDA44;" d="M15.923,345.043C52.094,442.527,145.929,512,256,512s203.906-69.473,240.077-166.957L256,322.783         L15.923,345.043z"></path>     <path style="fill:#000000;" d="M256,0C145.929,0,52.094,69.472,15.923,166.957L256,189.217l240.077-22.261C459.906,69.472,366.071,0,256,0z"></path>     <path style="fill:#D80027;" d="M15.923,166.957C5.633,194.69,0,224.686,0,256s5.633,61.31,15.923,89.043h480.155         C506.368,317.31,512,287.314,512,256s-5.632-61.31-15.923-89.043H15.923z"></path><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g> </svg>',
+            }
+        ];
+    }
+
+    function findCurrentLocale(languages, defaultLocale) {
+        var p = window.location.pathname.split('/').filter(function (x) {
+            return x;
+        });
+        if (p && p.length > 0 && languages.find(function (x) {
+            return x.iso_code === p[0];
+        })) {
+            return p[0];
+        } else {
+            return defaultLocale;
+        }
+    }
+
+    function createDropdown(t, i, s, l, logo) {
+        return function (container) {
+            if (l && l.length > 1) {
+                var select = $('#lang-switcher');
+                l.forEach(function (lang) {
+                    if (lang.logo == undefined) {
+                        var option = '<a class="dropdown-item" href="javascript:void(0)" data-value="' + lang.iso_code + '" aria-label="link"><span class="text">' + lang.iso_code + '</span><svg class="icon icon-arrow"><use xlink:href="#icon-chevron-down" /></svg></a>';
+                    } else {
+                        var option = '<a class="dropdown-item" href="javascript:void(0)" data-value="' + lang.iso_code + '" aria-label="link"><span class="icon">' + lang.logo + '</span><span class="text">' + lang.iso_code + '</span><svg class="icon icon-arrow"><use xlink:href="#icon-chevron-down" /></svg></a>';
+                    }
+                    $(option).appendTo(select);
+
+                    if (i === lang.iso_code)
+                        $('#lang-switcher [data-value="' + i + '"]').addClass('active');
+
+                });
+                if (select.find('.dropdown-item.active')) {
+                    var html = select.find('.dropdown-item.active').html();
+                    $('[data-language-label]').html(html);
+                }
+                $('#lang-switcher [data-value]').on('click', function () {
+                    var e = $(this).find('.text').text().replace(' ', '');
+                    var n = window.location.pathname;
+                    if (e === t) {
+                        var o = '' + s + n.replace('/' + i, '');
+                        window.location.assign(o)
+                    } else if (t === i) {
+                        var r = s + '/' + e + n;
+                        window.location.assign(r)
+                    } else {
+                        var a = s + '/' + n.replace('/' + i, e);
+                        window.location.assign(a)
+                    }
+                });
+            }
+        };
+    }
+
+    if (window.attachEvent) {
+        window.attachEvent('onload', setupLanguageSwitcher);
+    } else {
+        window.addEventListener('load', setupLanguageSwitcher, false);
+    }
+</script>
+
+
+{#<script src="https://cdn.shopify.com/s/files/1/0278/4434/5931/t/19/assets/jquery.min.js?v=183235607511247117321627262473"></script>#}
+<script src="https://cdn.shopify.com/s/files/1/0278/4434/5931/t/19/assets/currency.min.js?v=4971347729804225961627262460"></script>
+<script src="https://cdn.shopify.com/s/files/1/0278/4434/5931/t/19/assets/jquery.currencies.min.js?v=93165953928473677901627262472"></script>
+
+
+<script>
+    // Pick your format here:
+    // Can be 'money_format' or 'money_with_currency_format'
+    Currency.format = 'money_format';
+    var shopCurrency = 'USD';
+    if (shopCurrency != 'USD') {
+        window.location = window.location.href + '?currency=' + shopCurrency;
+    }
+    // Sometimes merchants change their shop currency, let's tell our JavaScript file
+    Currency.moneyFormats[shopCurrency].money_with_currency_format = "${{amount}}  USD";
+    Currency.moneyFormats[shopCurrency].money_format = "${{amount}}";
+
+    var cookieCurrency = Currency.cookie.read();
+
+    // Fix for customer account pages
+    $('span.money span.money').each(function () {
+        $(this).parent('span.money').removeClass('money');
+    });
+
+    // Add precalculated shop currency to data attribute
+    $('span.money').each(function () {
+        $(this).attr('data-currency-USD', jQuery(this).html());
+    });
+
+    // Select all your currencies buttons.
+    var currencySwitcher = $('#currencies'),
+        currencyItem = currencySwitcher.find('[data-currency]');
+
+    // When the page loads.
+    if (cookieCurrency == null || cookieCurrency == shopCurrency) {
+        Currency.currentCurrency = shopCurrency;
+    } else {
+        var flag = 0;
+        currencyItem.each(function () {
+            if (cookieCurrency == $(this).data('currency')) {
+                flag = 1;
+            }
+        });
+        if (flag == 0) {
+            cookieCurrency = shopCurrency;
+        }
+        Currency.currentCurrency = cookieCurrency;
+
+        currencySwitcher.find('.active').removeClass('active').parent().find('[data-currency=' + Currency.currentCurrency + ']').addClass('active');
+        Currency.format = 'money_format';
+        Currency.convertAll(shopCurrency, cookieCurrency);
+    }
+
+    currencyItem.on('click', function (e) {
+        e.preventDefault();
+
+        if ($(this).hasClass('active')) return false;
+
+        currencyItem.removeClass('active');
+
+        $(this).addClass('active');
+
+        var label = $('#currencies').prev('[data-currency-label]');
+
+        if (label.length && label.is(':visible')) {
+            var item = $(this).html();
+
+            label.html(item);
+
+            currencySwitcher.slideUp(300);
+        }
+        ;
+
+        var cur = $(this).attr('data-currency');
+        Currency.format = 'money_format';
+        cur != Currency.currentCurrency && Currency.convertAll(Currency.currentCurrency, cur);
+    });
+
+    $('body').on('refreshCurrency', function () {
+        Currency.format = 'money_format';
+        Currency.convertAll(shopCurrency, jQuery("#currencies .active").attr('data-currency'));
+    });
+</script>

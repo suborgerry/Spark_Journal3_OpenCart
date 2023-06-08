@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>d_ocmod_manager</name>
+    <code>d_ocmod_manager</code>
+    <version>1.0</version>
+    <author>Dreamvention</author>
+    <link>https://dreamvention.ee/</link>
+    <file path="admin/controller/marketplace/modification.php">
+        <operation error="skip">
+            <search><![CDATA[public function index() {]]></search>
+            <add position="after"><![CDATA[
+            $this->load->model('extension/d_opencart_patch/url');
+            if($this->config->get("d_ocmod_manager_replace")){
+            $this->response->redirect($this->model_extension_d_opencart_patch_url->link('extension/module/d_ocmod_manager'));
+            }
+            ]]></add>
+        </operation>
+    </file>
+    <file path="admin/controller/extension/modification.php">
+        <operation error="skip">
+            <search><![CDATA[public function index() {]]></search>
+            <add position="after"><![CDATA[
+            $this->load->model('extension/d_opencart_patch/url');
+            if($this->config->get("d_ocmod_manager_replace")){
+            $this->response->redirect($this->model_extension_d_opencart_patch_url->link('extension/module/d_ocmod_manager'));
+            }
+            ]]></add>
+        </operation>
+    </file>
+</modification>

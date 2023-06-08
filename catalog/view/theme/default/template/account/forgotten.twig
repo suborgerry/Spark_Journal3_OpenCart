@@ -1,0 +1,116 @@
+{{ header }}
+<div id="account-forgotten" class="container">
+{#  <div class="breadcrumb-wrapper">#}
+{#    <ul class="breadcrumb">#}
+{#      {% for breadcrumb in breadcrumbs %}#}
+{#        <li class="item is-active"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>#}
+{#          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-right" viewBox="0 0 478.448 478.448"><g><g>#}
+{#                <polygon points="131.659,0 100.494,32.035 313.804,239.232 100.494,446.373 131.65,478.448 377.954,239.232"></polygon>#}
+{#              </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>#}
+{#        </li>#}
+{#      {% endfor %}#}
+{#    </ul>#}
+{#  </div>#}
+{#  {% if error_warning %}#}
+{#  <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}</div>#}
+{#  {% endif %}#}
+{#  <div class="row">{{ column_left }}#}
+{#    {% if column_left and column_right %}#}
+{#    {% set class = 'col-sm-6' %}#}
+{#    {% elseif column_left or column_right %}#}
+{#    {% set class = 'col-sm-9' %}#}
+{#    {% else %}#}
+{#    {% set class = 'col-sm-12' %}#}
+{#    {% endif %}#}
+{#    <div id="content" class="{{ class }}">{{ content_top }}#}
+{#      <h1>{{ heading_title }}</h1>#}
+{#      <p>{{ text_email }}</p>#}
+{#      <form action="{{ action }}" method="post" enctype="multipart/form-data" class="form-horizontal">#}
+{#        <fieldset>#}
+{#          <legend>{{ text_your_email }}</legend>#}
+{#          <div class="form-group required">#}
+{#            <label class="col-sm-2 control-label" for="input-email">{{ entry_email }}</label>#}
+{#            <div class="col-sm-10">#}
+{#              <input type="text" name="email" value="{{ email }}" placeholder="{{ entry_email }}" id="input-email" class="form-control" />#}
+{#            </div>#}
+{#          </div>#}
+{#        </fieldset>#}
+{#        <div class="buttons clearfix">#}
+{#          <div class="pull-left"><a href="{{ back }}" class="btn btn-default">{{ button_back }}</a></div>#}
+{#          <div class="pull-right">#}
+{#            <input type="submit" value="{{ button_continue }}" class="btn btn-primary" />#}
+{#          </div>#}
+{#        </div>#}
+{#      </form>#}
+{#      {{ content_bottom }}</div>#}
+{#    {{ column_right }}</div>#}
+{#</div>#}
+
+
+<main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1">
+  <div class="container">
+    <div class="breadcrumb-wrapper">
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+          <li class="item is-active"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-right" viewBox="0 0 478.448 478.448"><g><g>
+                  <polygon points="131.659,0 100.494,32.035 313.804,239.232 100.494,446.373 131.65,478.448 377.954,239.232"></polygon>
+                </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+          </li>
+        {% endfor %}
+      </ul>
+      <h1 class="page-heading">{{ account_title }}</h1>
+    </div>
+    <div class="page page-login">
+      <div class="row">
+        <div class="col-12 col-sm-6 mb-5">
+
+          <div id="RecoverPasswordForm" class="">
+            <h2 id="RecoverHeading" class="loginTitle">{{ heading_title }}</h2>
+            <p class="text-link-hover">{{ text_email }}</p>
+            <div class="form-vertical">
+              <form method="post" action="{{ action }}" accept-charset="UTF-8"><input type="hidden" name="form_type" value="recover_customer_password">
+                <input type="hidden" name="utf8" value="✓">
+                <label for="RecoverEmail" class="form-label">{{ entry_email }}</label>
+                <input type="email" value="" name="email" id="RecoverEmail" class="input-full form-control" autocorrect="off" autocapitalize="off">
+               {% if error_warning %}
+                <span id="RecoverEmail-email-error" class="input-error-message">
+                                    <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-error" viewBox="0 0 14 14">
+                                      <g fill="none" fill-rule="evenodd"><path d="M7 0a7 7 0 0 1 7 7 7 7 0 1 1-7-7z"></path>
+                                        <path class="icon-error__symbol" d="M6.328 8.396l-.252-5.4h1.836l-.24 5.4H6.328zM6.04 10.16c0-.528.432-.972.96-.972s.972.444.972.972c0 .516-.444.96-.972.96a.97.97 0 0 1-.96-.96z" fill-rule="nonzero"></path>
+                                      </g>
+                                    </svg>
+                  {{ error_warning }}
+                                </span>
+               {% endif %}
+                <div class="button-group">
+                  <input type="submit" class="btn btn--secondary" value="{{ button_continue }}">
+                  <a href="{{ back }}" id="HideRecoverPasswordLink" class="btn btn--primary">{{ button_back }}</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+{#        <div class="col-12 col-sm-6">#}
+{#          <div class="form-vertical hide" id="CustomerRegisterForm">#}
+
+{#            <h1 class="loginTitle">Create a new account</h1>#}
+{#            <p><strong>Register Account</strong></p>#}
+{#            <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.</p><form method="post" action="/account" id="RegisterForm" accept-charset="UTF-8" data-login-with-shop-sign-up="true" novalidate="novalidate"><input type="hidden" name="form_type" value="create_customer"><input type="hidden" name="utf8" value="✓">#}
+{#              <label for="RegisterForm-FirstName" class="form-label">First Name<em>*</em></label>#}
+{#              <input type="text" name="customer[first_name]" id="RegisterForm-FirstName" autocomplete="given-name" class="form-control">#}
+{#              <label for="RegisterForm-LastName" class="form-label">Last Name<em>*</em></label>#}
+{#              <input type="text" name="customer[last_name]" id="RegisterForm-LastName" autocomplete="family-name" class="form-control">#}
+{#              <label for="RegisterForm-email" class="form-label">Email<em>*</em></label>#}
+{#              <input type="email" name="customer[email]" id="RegisterForm-email" class="form-control" autocorrect="off" autocapitalize="off" autocomplete="email" aria-required="true"><label for="RegisterForm-password" class="form-label">Password<em>*</em></label>#}
+{#              <input type="password" name="customer[password]" id="RegisterForm-password" class="form-control" aria-required="true"><div class="button-group">#}
+{#                <input type="submit" value="Create An Account" class="btn btn--secondary-accent btn--big">#}
+{#              </div>#}
+{#            </form>#}
+{#          </div>#}
+{#        </div>#}
+      </div>
+    </div>
+  </div>
+</main>
+{{ footer }}

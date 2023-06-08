@@ -1,0 +1,388 @@
+<div class="simplecheckout-block" id="simplecheckout_cart" {{ hide ? 'data-hide="true"' : '' }} {{ has_error ? 'data-error="true"' : '' }}>
+{% if display_header %}
+    <div class="checkout-heading panel-heading">{{ text_cart }} <span class="checkout-heading-button"><a href="javascript:void(0)" data-onclick="clearCart"
+                                                                                                         class="text-danger" data-confirm-text="{{ text_clear_cart_question }}">{{ text_clear_cart }}</a></span></div>
+{% endif %}
+{% if attention %}
+    <div class="alert alert-danger simplecheckout-warning-block">{{ attention }}</div>
+{% endif %}
+{% if error_warning %}
+    <div class="alert alert-danger simplecheckout-warning-block">{{ error_warning }}</div>
+{% endif %}
+{#    <div class="table-responsive">#}
+{#        <table class="simplecheckout-cart">#}
+{#            <colgroup>#}
+{#                <col class="image">#}
+{#                <col class="name">#}
+{#                <col class="model">#}
+{#                <col class="quantity">#}
+{#                <col class="price">#}
+{#                <col class="total">#}
+{#                <col class="remove">#}
+{#            </colgroup>#}
+{#            <thead>#}
+{#                <tr>#}
+{#                    <th class="image">{{ column_image }}</th>#}
+{#                    <th class="name">{{ column_name }}</th>#}
+{#                    <th class="model">{{ column_model }}</th>#}
+{#                    <th class="quantity">{{ column_quantity }}</th>#}
+{#                    <th class="price">{{ column_price }}</th>#}
+{#                    <th class="total">{{ column_total }}</th>#}
+{#                    <th class="remove"></th>#}
+{#                </tr>#}
+{#            </thead>#}
+{#            <tbody>#}
+{#                {% for product in products %}#}
+{#                    {% if product['recurring'] is not empty %}#}
+{#                        <tr>#}
+{#                            <td class="simplecheckout-recurring-product" style="border:none;">#}
+{#                                <img src="{{ additional_path }}catalog/view/theme/default/image/reorder.png" alt="" title="" style="float:left;" />#}
+{#                                <span style="float:left;line-height:18px; margin-left:10px;">#}
+{#                                <strong>{{ text_recurring_item }}</strong>#}
+{#                                {{ product['profile_description'] }}#}
+{#                                </span>#}
+{#                            </td>#}
+{#                        </tr>#}
+{#                    {% endif %}#}
+{#                    <tr>#}
+{#                        <td class="image">#}
+{#                            {% if product['thumb'] %}#}
+{#                                <a href="{{ product['href'] }}"><img src="{{ product['thumb'] }}" alt="{{ product['name'] }}" title="{{ product['name'] }}" /></a>#}
+{#                            {% endif %}#}
+{#                        </td>#}
+{#                        <td class="name">#}
+{#                            {% if product['thumb'] %}#}
+{#                                <div class="image">#}
+{#                                    <a href="{{ product['href'] }}"><img src="{{ product['thumb'] }}" alt="{{ product['name'] }}" title="{{ product['name'] }}" /></a>#}
+{#                                </div>#}
+{#                            {% endif %}#}
+{#                            <a href="{{ product['href'] }}">{{ product['name'] }}</a>#}
+{#                            {% if not product['stock'] and (config_stock_warning or not config_stock_checkout) %}#}
+{#                                <span class="product-warning">***</span>#}
+{#                            {% endif %}#}
+{#                            <div class="options">#}
+{#                            {% for option in product['option'] %}#}
+{#                            &nbsp;<small> - {{ option['name'] }}: {{ option['value'] }}</small><br />#}
+{#                            {% endfor %}#}
+{#                            {% if product['recurring'] is not empty %}#}
+{#                            - <small>{{ text_payment_profile }}: {{ product['profile_name'] }}</small>#}
+{#                            {% endif %}#}
+{#                            </div>#}
+{#                            {% if product['reward'] %}#}
+{#                            <small>{{ product['reward'] }}</small>#}
+{#                            {% endif %}#}
+{#                        </td>#}
+{#                        <td class="model">{{ product['model'] }}</td>#}
+{#                        <td class="quantity">#}
+{#                            <div class="input-group btn-block" style="max-width: 200px;">#}
+{#                                <span class="input-group-btn">#}
+{#                                    <button class="btn btn-primary" data-onclick="decreaseProductQuantity" data-toggle="tooltip" type="submit">#}
+{#                                        <i class="fa fa-minus"></i>#}
+{#                                    </button>#}
+{#                                </span>#}
+{#                                <input class="form-control" type="text" data-onchange="changeProductQuantity" {{ quantity_step_as_minimum ? 'data-minimum="' ~ product['minimum'] ~ '"' : '' }} name="quantity[{{ product['cart_id'] is not empty ? product['cart_id'] : product['key'] }}]" value="{{ product['quantity'] }}" size="1" />#}
+{#                                <span class="input-group-btn">#}
+{#                                    <button class="btn btn-primary" data-onclick="increaseProductQuantity" data-toggle="tooltip" type="submit">#}
+{#                                        <i class="fa fa-plus"></i>#}
+{#                                    </button>#}
+{#                                    <button class="btn btn-danger" data-onclick="removeProduct" data-product-key="{{ product['cart_id'] is not empty ? product['cart_id'] : product['key'] }}" data-toggle="tooltip" type="button">#}
+{#                                        <i class="fa fa-times-circle"></i>#}
+{#                                    </button>#}
+{#                                </span>#}
+{#                            </div>#}
+{#                        </td>#}
+{#                        <td class="price">#}
+{#                            {% if product['old_price'] is not empty %}#}
+{#                                <div style="text-decoration: line-through;">{{ product['old_price'] }}</div>#}
+{#                            {% endif %}#}
+{#                            <div>{{ product['price'] }}</div>#}
+{#                        </td>#}
+{#                        <td class="total">{{ product['total'] }}</td>#}
+{#                        <td class="remove">#}
+{#                        </td>#}
+{#                    </tr>#}
+{#                {% endfor %}#}
+{#                {% for voucher_info in vouchers %}#}
+{#                    <tr>#}
+{#                        <td class="image"></td>#}
+{#                        <td class="name">{{ voucher_info['description'] }}</td>#}
+{#                        <td class="model"></td>#}
+{#                        <td class="quantity">#}
+{#                            <div class="input-group btn-block" style="max-width: 200px;">#}
+{#                                <input class="form-control" type="text" disabled value="1" size="1" />#}
+{#                                <span class="input-group-btn">#}
+{#                                    <button class="btn btn-danger" data-onclick="removeGift" data-gift-key="{{ voucher_info['key'] }}" title="{{ button_remove }}" type="button">#}
+{#                                        <i class="fa fa-times-circle"></i>#}
+{#                                    </button>#}
+{#                                </span>#}
+{#                            </div>#}
+{#                        </td>#}
+{#                        <td class="price">{{ voucher_info['amount'] }}</td>#}
+{#                        <td class="total">{{ voucher_info['amount'] }}</td>#}
+{#                        <td class="remove">#}
+{#                        </td>#}
+{#                    </tr>#}
+{#                {% endfor %}#}
+{#            </tbody>#}
+{#        </table>#}
+{#    </div>#}
+
+
+<aside class="I3DjT aADa7 fiOsL WrWRL">
+    <div class="_1fragemah"><h2 class="_1fragemaf n8k95w3">{{ text_order_summary }}</h2></div>
+    <div class="RTcqB">
+        <div class="I_61l">
+            <div class="tAyc6">
+                <div class="_1ip0g651 _1fragem1b _1fragemaf _1fragem1w _1fragem2d">
+                    <div class="_1ip0g651 _1fragem1b _1fragemaf _1fragem1w _1fragem2d">
+                        <section class="_1fragem15 _1fragemaf">
+                            <div class="_1fragem15 _1fragemah _1fragemaf">
+                                <h3 id="ResourceList0" class="_1fragemaf n8k95w4">Shopping cart</h3></div>
+                            <div role="table" aria-labelledby="ResourceList0" class="_6zbcq55 _1fragem17 _1fragem1d _6zbcq58 _6zbcq56">
+                                <div role="row" class="_6zbcq51f _1fragem17 _1fragem4 _1fragem34 _6zbcq51d">
+                                    <div role="columnheader" class="_6zbcq51g">
+                                        <div class="_1fragem15 _1fragemah _1fragemaf">Product image</div>
+                                    </div>
+                                    <div role="columnheader" class="_6zbcq51g">
+                                        <div class="_1fragem15 _1fragemah _1fragemaf">Description</div>
+                                    </div>
+                                    <div role="columnheader" class="_6zbcq51g">
+                                        <div class="_1fragem15 _1fragemah _1fragemaf">Quantity</div>
+                                    </div>
+                                    <div role="columnheader" class="_6zbcq51g">
+                                        <div class="_1fragem15 _1fragemah _1fragemaf">Price</div>
+                                    </div>
+                                </div>
+                                {% for product in products %}
+                                    {% if product['recurring'] is not empty %}
+                                        <tr>
+                                            <td class="simplecheckout-recurring-product" style="border:none;">
+                                                <img src="{{ additional_path }}catalog/view/theme/default/image/reorder.png" alt="" title="" style="float:left;" />
+                                                <span style="float:left;line-height:18px; margin-left:10px;">
+                                                <strong>{{ text_recurring_item }}</strong>
+                                                {{ product['profile_description'] }}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    {% endif %}
+                                <div role="row" class="_6zbcq526 _1fragem17 _1fragem10 _6zbcq52d">
+{#                                    <a href="{{ product['href'] }}">#}
+                                    <div role="cell" class="_6zbcq53y _1fragem17 _1fragem1d _1fragem38">
+                                        <div class="_1fragem15 _1fragem48 _1fragem4d _1fragem4n _1fragem4i _1fragemaf _16s97g7r _16s97g7t _16s97g7v TOZIs" style="--_16s97g7q: 6.4rem; --_16s97g7s: 6.4rem; --_16s97g7u: 6.4rem;">
+                                            <div class="_1h3po421 _1h3po423 _1fragemaf" style="--_1h3po420: 1;">
+                                                <picture>
+{#                                                    <a href="{{ product['href'] }}">#}
+                                                    <img src="{{ product['thumb'] }}"
+                                                         alt="Suspen disseuis rantion convallis udin terdum mamentu"
+                                                         class="_1h3po424 _1fragem15 _1fragem9q _1fragem3k _1fragem3h _1fragem3n _1fragem3e _1fragem48 _1fragem4d _1fragem4n _1fragem4i _1fragem5b _1fragem56 _1fragem5g _1fragem51 _1fragem9t">
+{#                                                    </a>#}
+                                                </picture>
+                                            </div>
+                                            <div aria-hidden="true" class="_1fragem17 _1fragem1d _1fragem49 _1fragem4e _1fragem4o _1fragem4j _1fragem4 _1fragem36 _1fragem8q _1fragem8u _1fragem89 _1fragem9b _1fragemad _16s97g7t _16s97g7v _16s97g7x _16s97g7h _16s97g7j _16s97g7l _16s97g7n AT21L"  style="--_16s97g7s: 2.1rem; --_16s97g7u: 2.1rem; --_16s97g7w: translateX(calc(25% * var(--x-global-transform-direction-modifier))) translateY(-50%); --_16s97g7g: 0rem; --_16s97g7i: auto; --_16s97g7k: auto; --_16s97g7m: 0rem;">
+                                                <div class="_1fragem15 _1fragemaf s17WO">
+                                                    <p class="_1x52f9s1 _1fragemaf _1x52f9sj _1fragem1i _1x52f9s2">{{ product['quantity'] }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="cell"  class="_6zbcq53y _1fragem17 _1fragem1d _1fragem36 _1fragem1g">
+                                        <p class="_1x52f9s1 _1fragemaf _1x52f9sl _1fragem1j _1x52f9s2">{{ product['name'] }}</p>
+                                        <div class="_1ip0g651 _1fragem1b _1fragemaf _1fragem1r _1fragem28"></div>
+                                    </div>
+{#                                    <div role="cell" class="_6zbcq53y _1fragem17 _1fragem1d _1fragem36 _6zbcq53w">#}
+{#                                        <div class="_1fragem15 _1fragemah _1fragemaf">#}
+{#                                            <span class="_19gi7yt0 _19gi7yte _1fragem1j">#}
+{#                                                <div aria-hidden="true" class="_1fragem15 _1fragemaf"> x</div>#}
+{#                                            </span>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <div role="cell" class="_6zbcq53y _1fragem17 _1fragem1d _1fragem38">#}
+{#                                        <div class="_1fragem17 _1fragem1d _1fragem5 _1fragem36 _1fragemaf _16s97g7r _16s97g7t _16s97g7v bua0H" style="--_16s97g7q: 6.4rem; --_16s97g7s: 6.4rem; --_16s97g7u: 6.4rem;">#}
+{#                                            <div class="_1ip0g651 _1fragem1b _1fragemaf _1fragem1t _1fragem2a _1fragem3b">#}
+{#                                                 <span translate="yes" class="_19gi7yt0 _19gi7yte _1fragem1j notranslate">{{ product['price'] }} x {{ product['quantity'] }} </span>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+                                    <div role="cell" class="_6zbcq53y _1fragem17 _1fragem1d _1fragem38">
+                                        <div class="_1fragem17 _1fragem1d _1fragem5 _1fragem36 _1fragemaf _16s97g7r _16s97g7t _16s97g7v bua0H" style="--_16s97g7q: 6.4rem; --_16s97g7s: 6.4rem; --_16s97g7u: 6.4rem;">
+                                            <div class="_1ip0g651 _1fragem1b _1fragemaf _1fragem1t _1fragem2a _1fragem3b">
+                                                <span translate="yes" class="_19gi7yt0 _19gi7yte _1fragem1j notranslate">{{ product['total']  }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+{#                                    </a>#}
+                                </div>
+{#                                    <tr>#}
+{#                                        <td class="image">#}
+{#                                            {% if product['thumb'] %}#}
+{#                                                <a href="{{ product['href'] }}"><img src="{{ product['thumb'] }}" alt="{{ product['name'] }}" title="{{ product['name'] }}" /></a>#}
+{#                                            {% endif %}#}
+{#                                        </td>#}
+{#                                        <td class="name">#}
+{#                                            {% if product['thumb'] %}#}
+{#                                                <div class="image">#}
+{#                                                    <a href="{{ product['href'] }}"><img src="{{ product['thumb'] }}" alt="{{ product['name'] }}" title="{{ product['name'] }}" /></a>#}
+{#                                                </div>#}
+{#                                            {% endif %}#}
+{#                                            <a href="{{ product['href'] }}">{{ product['name'] }}</a>#}
+{#                                            {% if not product['stock'] and (config_stock_warning or not config_stock_checkout) %}#}
+{#                                                <span class="product-warning">***</span>#}
+{#                                            {% endif %}#}
+{#                                            <div class="options">#}
+{#                                                {% for option in product['option'] %}#}
+{#                                                    &nbsp;<small> - {{ option['name'] }}: {{ option['value'] }}</small><br />#}
+{#                                                {% endfor %}#}
+{#                                                {% if product['recurring'] is not empty %}#}
+{#                                                    - <small>{{ text_payment_profile }}: {{ product['profile_name'] }}</small>#}
+{#                                                {% endif %}#}
+{#                                            </div>#}
+{#                                            {% if product['reward'] %}#}
+{#                                                <small>{{ product['reward'] }}</small>#}
+{#                                            {% endif %}#}
+{#                                        </td>#}
+{#                                        <td class="model">{{ product['model'] }}</td>#}
+{#                                        <td class="quantity">#}
+{#                                            <div class="input-group btn-block" style="max-width: 200px;">#}
+{#                                <span class="input-group-btn">#}
+{#                                    <button class="btn btn-primary" data-onclick="decreaseProductQuantity" data-toggle="tooltip" type="submit">#}
+{#                                        <i class="fa fa-minus"></i>#}
+{#                                    </button>#}
+{#                                </span>#}
+{#                                                <input class="form-control" type="text" data-onchange="changeProductQuantity" {{ quantity_step_as_minimum ? 'data-minimum="' ~ product['minimum'] ~ '"' : '' }} name="quantity[{{ product['cart_id'] is not empty ? product['cart_id'] : product['key'] }}]" value="{{ product['quantity'] }}" size="1" />#}
+{#                                                <span class="input-group-btn">#}
+{#                                    <button class="btn btn-primary" data-onclick="increaseProductQuantity" data-toggle="tooltip" type="submit">#}
+{#                                        <i class="fa fa-plus"></i>#}
+{#                                    </button>#}
+{#                                    <button class="btn btn-danger" data-onclick="removeProduct" data-product-key="{{ product['cart_id'] is not empty ? product['cart_id'] : product['key'] }}" data-toggle="tooltip" type="button">#}
+{#                                        <i class="fa fa-times-circle"></i>#}
+{#                                    </button>#}
+{#                                </span>#}
+{#                                            </div>#}
+{#                                        </td>#}
+{#                                        <td class="price">#}
+{#                                            {% if product['old_price'] is not empty %}#}
+{#                                                <div style="text-decoration: line-through;">{{ product['old_price'] }}</div>#}
+{#                                            {% endif %}#}
+{#                                            <div>{{ product['price'] }}</div>#}
+{#                                        </td>#}
+{#                                        <td class="total">{{ product['total'] }}</td>#}
+{#                                        <td class="remove">#}
+{#                                        </td>#}
+{#                                    </tr>#}
+                               {% endfor %}
+                            </div>
+                        </section>
+                    </div>
+                    <div class="_1ip0g651 _1fragem1b _1fragemaf _1fragem1w _1fragem2d">
+                        <section class="_1fragem15 _1fragemaf">
+                            <div class="_1ip0g651 _1fragem1b _1fragemaf _1fragem1o _1fragem25">
+                                <form action="" method="POST" novalidate="" id="Form1"
+                                      class="_1fragem16">
+                                    <div class="_1fragemaf">
+                                        {% if modules['coupon'] is defined %}
+                                            <div class="_1fragemaf _1fragem1b _1mrl40q2 _1fragem1r _1fragem25 _16s97g73 _16s97g75 _16s97g7b _16s97g7d"
+                                                 style="--_16s97g72: 1fr; --_16s97g74: minmax(auto, max-content); --_16s97g7a: minmax(0, 1fr) minmax(auto, max-content); --_16s97g7c: minmax(auto, max-content);">
+                                                <div class="_7ozb2u2 _1fragem1r _1fragem28 _1fragemaf _1fragem1b _10vrn9p1 _10vrn9p0 _10vrn9p6">
+                                                    <div class="_1fragemaf">
+                                                       <div class="_7ozb2u4 _1fragemaf _1fragem1b _1fragem14 _1fragemat _1fragemap _1fragemb2 _1fragemb3 _7ozb2uc _7ozb2un _7ozb2up _7ozb2uj">
+                                                            <input  value="{{ coupon }}" data-onchange="reloadAll" name="coupon" placeholder="{{ entry_coupon }}"  type="text"  aria-labelledby="TextField6-label"  class="_7ozb2uu _1fragemaf _1fragemb4 _1fragem34 _1fragemab _7ozb2uv _7ozb2u15 _7ozb2u1n">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                        {% if modules['reward'] is defined and points > 0 %}
+                                            <div class="_1fragemaf _1fragem1b _1mrl40q2 _1fragem1r _1fragem25 _16s97g73 _16s97g75 _16s97g7b _16s97g7d"
+                                                 style="--_16s97g72: 1fr; --_16s97g74: minmax(auto, max-content); --_16s97g7a: minmax(0, 1fr) minmax(auto, max-content); --_16s97g7c: minmax(auto, max-content);">
+                                                <div class="_7ozb2u2 _1fragem1r _1fragem28 _1fragemaf _1fragem1b _10vrn9p1 _10vrn9p0 _10vrn9p6">
+                                                    <div class="_1fragemaf">
+                                                        <div class="_7ozb2u4 _1fragemaf _1fragem1b _1fragem14 _1fragemat _1fragemap _1fragemb2 _1fragemb3 _7ozb2uc _7ozb2un _7ozb2up _7ozb2uj">
+                                                            <input  value="{{ reward }}" data-onchange="reloadAll" name="reward" placeholder="{{ entry_reward }}"  type="text"  aria-labelledby="TextField6-label"  class="_7ozb2uu _1fragemaf _1fragemb4 _1fragem34 _1fragemab _7ozb2uv _7ozb2u15 _7ozb2u1n">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                        {% if modules['voucher'] is defined and points > 0 %}
+                                            <div class="_1fragemaf _1fragem1b _1mrl40q2 _1fragem1r _1fragem25 _16s97g73 _16s97g75 _16s97g7b _16s97g7d"
+                                                 style="--_16s97g72: 1fr; --_16s97g74: minmax(auto, max-content); --_16s97g7a: minmax(0, 1fr) minmax(auto, max-content); --_16s97g7c: minmax(auto, max-content);">
+                                                <div class="_7ozb2u2 _1fragem1r _1fragem28 _1fragemaf _1fragem1b _10vrn9p1 _10vrn9p0 _10vrn9p6">
+                                                    <div class="_1fragemaf">
+                                                        <div class="_7ozb2u4 _1fragemaf _1fragem1b _1fragem14 _1fragemat _1fragemap _1fragemb2 _1fragemb3 _7ozb2uc _7ozb2un _7ozb2up _7ozb2uj">
+                                                            <input  value="{{ voucher }}" data-onchange="reloadAll" name="voucher" placeholder="{{ entry_voucher }}"  type="text"  aria-labelledby="TextField6-label"  class="_7ozb2uu _1fragemaf _1fragemb4 _1fragem34 _1fragemab _7ozb2uv _7ozb2u15 _7ozb2u1n">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                    <section class="_1fragem15 _1fragemaf">
+                        <div class="_1fragem15 _1fragemah _1fragemaf"><h3
+                                    id="MoneyLine-Heading0" class="_1fragemaf n8k95w4">Cost summary</h3></div>
+                        <div role="table" aria-labelledby="MoneyLine-Heading0"
+                             class="nfgb6p0">
+                            {% for total in total_up %}
+                                <div role="row" id="total_{{ total['code'] }}" class="_1qy6ue61 _1fragem1b _1qy6ue68">
+                                    <div role="cell" class="_1qy6ue69"><span  class="_19gi7yt0 _19gi7yte _1fragem1j">{{ total['title'] }}</span></div>
+                                    <div role="cell" class="_1qy6ue6a">
+                                        <span translate="yes" class="_19gi7yt0 _19gi7yte _1fragem1j _19gi7yt1 notranslate">{{ total['text'] }}</span>
+                                    </div>
+                                    {% if total['code'] == 'coupon' %}
+                                        <i data-onclick="removeCoupon" title="{{ button_remove }}" class="fa fa-times-circle"></i>
+                                    {% endif %}
+                                    {% if total['code'] == 'voucher' %}
+                                        <i data-onclick="removeVoucher" title="{{ button_remove }}" class="fa fa-times-circle"></i>
+                                    {% endif %}
+                                    {% if total['code'] == 'reward' %}
+                                        <i data-onclick="removeReward" title="{{ button_remove }}" class="fa fa-times-circle"></i>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                            {% for total in total_last %}
+                            <div role="row" class="_1x41w3p1 _1fragem1b _1fragem4 _1x41w3p8">
+                                <div role="cell" class="_1x41w3p9"><span  class="_19gi7yt0 _19gi7yti _1fragem1l _19gi7yt1">{{ total['title'] }}</span></div>
+                                <div role="cell" class="_1x41w3pa">
+                                    <div class="_1fragem17 _1fragemaf _1fragem38">
+                                        <div class="_5uqybw2 _1fragem17 _1fragem9r _1fragem1t _1fragem2a _1fragem3 _1fragem38">
+                                            <abbr translate="yes" class="_19gi7yt0 _19gi7ytc _1fragem1i _19gi7yt7 notranslate _19gi7ytq _1fragemal">{{ currency }}</abbr>
+                                            <strong translate="yes" id="simplecheckout_cart_total" class="_19gi7yt0 _19gi7yti _1fragem1l _19gi7yt1 notranslate">{{ total['text'] }}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
+
+    <input type="hidden" name="remove" value="" id="simplecheckout_remove">
+    <div style="display:none;" id="simplecheckout_cart_total">{{ cart_total }}</div>
+    {% if display_weight %}
+        <div style="display:none;" id="simplecheckout_cart_weight">{{ weight }}</div>
+    {% endif %}
+    {% if not display_model %}
+        <style>
+            .simplecheckout-cart col.model,
+            .simplecheckout-cart th.model,
+            .simplecheckout-cart td.model {
+                display: none;
+            }
+        </style>
+    {% endif %}
+</div>
+<link href="/catalog/view/theme/default/stylesheet/checkout.css"
+      crossorigin="anonymous" rel="stylesheet">
+<link href="/catalog/view/theme/default/stylesheet/bugsnag.css"
+      crossorigin="anonymous" rel="stylesheet">
+<link href="/catalog/view/theme/default/stylesheet/app.css"
+      crossorigin="anonymous" rel="stylesheet">
+<link href="/catalog/view/theme/default/stylesheet/Information.latest.css"
+      crossorigin="anonymous" rel="stylesheet">

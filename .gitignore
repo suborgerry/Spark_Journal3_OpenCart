@@ -1,0 +1,41 @@
+/system/storage/
+/system/cache/
+/system/logs/
+
+# Ignore user-generated files and folders
+/image/cache/
+/download/
+/upload/
+
+# Ignore configuration files
+/config.php
+/admin/config.php
+
+# Ignore compiled JavaScript and CSS files
+/catalog/view/javascript/concat/
+/catalog/view/javascript/*.min.js
+/catalog/view/theme/*/stylesheet/*.css
+
+# Ignore backup and temporary files
+*.bak
+*.swp
+*.tmp
+
+# Ignore log files
+*.log
+
+# Ignore development tools and IDE-specific files
+.idea/
+.vscode/
+
+# Ignore Composer dependencies
+/vendor/
+
+# Ignore Node.js dependencies
+/node_modules/
+
+# Ignore package-lock.json for npm
+package-lock.json
+
+# Ignore yarn.lock for Yarn
+yarn.lock

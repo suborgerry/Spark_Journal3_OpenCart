@@ -1,0 +1,203 @@
+{% if not ajax and not popup and not as_module %}
+{% set simple_page = 'simpleregister' %}
+{{ header }}
+<div class="container">
+    <div class="breadcrumb-wrapper">
+    <ul class="breadcrumb">
+      {% for breadcrumb in breadcrumbs %}
+        <li class="item is-active"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-right" viewBox="0 0 478.448 478.448"><g><g>
+                <polygon points="131.659,0 100.494,32.035 313.804,239.232 100.494,446.373 131.65,478.448 377.954,239.232"></polygon>
+              </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  {% if error_warning %}
+  <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}</div>
+  {% endif %}
+
+{#  <div class="row">{{ column_left }}#}
+{#    {% if column_left and column_right %}#}
+{#    {% set class = 'col-sm-6' %}#}
+{#    {% elseif column_left or column_right %}#}
+{#    {% set class = 'col-sm-9' %}#}
+{#    {% else %}#}
+{#    {% set class = 'col-sm-12' %}#}
+{#    {% endif %}#}
+ <div class="page page-login">
+        <div class="row">
+            <div id="content" class="col-12 col-sm-12 mb-5">
+           <div class="col-12 col-sm-12">
+            <div class="form-vertical" id="CustomerRegisterForm">
+              <h1 class="loginTitle">{{ heading_title }}</h1>
+              <p><strong>{{ heading_title2 }}</strong></p>
+              <p>{{ register_text }}</p>
+
+
+{% endif %}
+    {% if not ajax or (ajax and popup) %}
+    <script type="text/javascript">
+        {% if popup %} 
+            var simpleScriptsInterval = window.setInterval(function(){
+                if (typeof jQuery !== 'undefined' && jQuery.isReady) {
+                    window.clearInterval(simpleScriptsInterval);
+
+                    if (typeof Simplepage !== "function") {
+                        {% for script in simple_scripts %}
+                            $("head").append('<script src="' + '{{ script }}' + '"></' + 'script>');
+                        {% endfor %}
+
+                        {% for style in simple_styles %}
+                            $("head").append('<link href="' + '{{ style }}' + '" rel="stylesheet"/>');
+                        {% endfor %}                         
+                    }
+                }
+            },0);
+        {% endif %}
+
+        var startSimpleInterval = window.setInterval(function(){
+            if (typeof jQuery !== 'undefined' && typeof Simplepage === "function" && jQuery.isReady) {
+                window.clearInterval(startSimpleInterval);
+                
+                var simplepage = new Simplepage({
+                    additionalParams: "{{ additional_params }}",
+                    additionalPath: "{{ additional_path }}",
+                    mainUrl: "{{ action }}",
+                    mainContainer: "#simplepage_form",
+                    useAutocomplete: {{ use_autocomplete ? 1 : 0 }},
+                    scrollToError: {{ scroll_to_error ? 1 : 0 }},
+                    notificationDefault: {{ notification_default ? 1 : 0 }},
+                    notificationToasts: {{ notification_toasts ? 1 : 0 }},
+                    notificationCheckForm: {{ notification_check_form ? 1 : 0 }},
+                    notificationCheckFormText: "{{ notification_check_form_text }}",
+                    languageCode: "{{ language_code }}",
+                    javascriptCallback: function() { {{ javascript_callback }} }
+                });
+
+                if (typeof toastr !== 'undefined') {
+                    toastr.options.positionClass = "{{ notification_position ? notification_position : 'toast-top-right' }}";
+                    toastr.options.timeOut = "{{ notification_timeout ? notification_timeout : '5000' }}";
+                    toastr.options.progressBar = true;
+                }
+
+                simplepage.init();
+            }
+        },0);
+    </script>
+    {% endif %}
+    <form method="post" action="{{ action }}" enctype="multipart/form-data" id="simplepage_form" accept-charset="UTF-8" data-login-with-shop-sign-up="true" novalidate="novalidate" >
+{#                <input type="hidden" name="form_type" value="create_customer">#}
+{#                <input type="hidden" name="utf8" value="✓">#}
+{#                <label for="RegisterForm-FirstName" class="form-label">First Name<em>*</em></label>#}
+{#                <input type="text" name="customer[first_name]" id="RegisterForm-FirstName" autocomplete="given-name" class="form-control">#}
+
+{#                <label for="RegisterForm-LastName" class="form-label">Last Name<em>*</em></label>#}
+{#                <input type="text" name="customer[last_name]" id="RegisterForm-LastName" autocomplete="family-name" class="form-control">#}
+
+{#                <label for="RegisterForm-email" class="form-label">Email<em>*</em></label>#}
+{#                <input type="email" name="customer[email]" id="RegisterForm-email" class="form-control" autocorrect="off" autocapitalize="off" autocomplete="email" aria-required="true">#}
+{#                <label for="RegisterForm-password" class="form-label">Password<em>*</em></label>#}
+{#                <input type="password" name="customer[password]" id="RegisterForm-password" class="form-control" aria-required="true">#}
+{#                <div class="button-group">#}
+{#                  <input type="submit" value="Create An Account" class="btn btn--secondary-accent btn--big">#}
+{#                </div>#}
+
+                <div class="simpleregister" id="simpleregister">
+            <p class="simpleregister-have-account">{{ text_account_already }}</p>
+            {% if error_warning %}
+            <div class="warning alert alert-danger">{{ error_warning }}</div>
+            {% endif %}
+
+{#            <div class="simpleregister-block-content">#}
+                {% for row in rows %}
+                  {{ row }}
+                {% endfor %}
+                {% for row in hidden_rows %}
+                  {{ row }}
+                {% endfor %}
+{#            </div>#}
+
+            {% if display_agreement_checkbox %}
+                <div class="alert alert-danger simpleregister-warning-block" id="agreement_warning" {% if error_agreement %}data-error="true"{% else %}style="display:none;"{% endif %}>
+                    <div class="agreement_all">
+                        {% for agreement_id, warning_agreement in error_warning_agreement %}
+                            <div class="agreement_{{ agreement_id }}">{{ warning_agreement }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+
+{#                <div class="simpleregister-button-right">#}
+                    {% if (display_agreement_checkbox) %}
+                        <span id="agreement_checkbox">
+                            {% for agreement_id, text_agreement in text_agreements %}
+                                <div class="checkbox"><label>
+                                        <input type="checkbox" name="agreements[]" value="{{ agreement_id }}" {{ agreement_id in agreements ? 'checked="checked"' : '' }} />{{ text_agreement }}
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </span>
+                    {% endif %}
+                        <div class="button-group">
+                                <a href="" class="btn btn--secondary-accent btn--big" data-onclick="submit" id="simpleregister_button_confirm"><span>{{ button_continue }}</span></a>
+                       </div>
+{#                      <input type="submit" id="simpleregister_button_confirm" value="{{ button_continue }}" class="btn btn--secondary-accent btn--big">#}
+
+                </div>
+{#            </div>#}
+
+                {% if redirect %}
+                    <input type="hidden" id="simple_redirect_url" value="{{ redirect }}">
+                {% endif %}
+              </form>
+            </div>
+{#    <form action="{{ action }}" method="post" enctype="multipart/form-data" id="simplepage_form">#}
+{#        <div class="simpleregister" id="simpleregister">#}
+{#            <p class="simpleregister-have-account">{{ text_account_already }}</p>#}
+{#            {% if error_warning %}#}
+{#            <div class="warning alert alert-danger">{{ error_warning }}</div>#}
+{#            {% endif %}#}
+{#            <div class="simpleregister-block-content">#}
+{#                {% for row in rows %}#}
+{#                  {{ row }}#}
+{#                {% endfor %}#}
+{#                {% for row in hidden_rows %}#}
+{#                  {{ row }}#}
+{#                {% endfor %}#}
+{#            </div>#}
+
+{#            {% if display_agreement_checkbox %}#}
+{#                <div class="alert alert-danger simpleregister-warning-block" id="agreement_warning" {% if error_agreement %}data-error="true"{% else %}style="display:none;"{% endif %}>#}
+{#                    <div class="agreement_all">#}
+{#                        {% for agreement_id, warning_agreement in error_warning_agreement %}#}
+{#                            <div class="agreement_{{ agreement_id }}">{{ warning_agreement }}</div>#}
+{#                        {% endfor %}#}
+{#                    </div>                    #}
+{#                </div>#}
+{#            {% endif %}  #}
+
+{#            <div class="simpleregister-button-block buttons">#}
+{#                <div class="simpleregister-button-right">#}
+{#                    {% if (display_agreement_checkbox) %}#}
+{#                        <span id="agreement_checkbox">#}
+{#                            {% for agreement_id, text_agreement in text_agreements %}#}
+{#                                <div class="checkbox"><label><input type="checkbox" name="agreements[]" value="{{ agreement_id }}" {{ agreement_id in agreements ? 'checked="checked"' : '' }} />{{ text_agreement }}</label></div>#}
+{#                            {% endfor %}#}
+{#                        </span>#}
+{#                    {% endif %}#}
+
+{#                    <a class="button btn-primary button_oc btn" data-onclick="submit" id="simpleregister_button_confirm"><span>{{ button_continue }}</span></a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        {% if redirect %}#}
+{#            <input type="hidden" id="simple_redirect_url" value="{{ redirect }}">#}
+{#        {% endif %}#}
+{#    </form>#}
+{% if not ajax and not popup and not as_module %}
+</div>
+{% include simple_footer %}
+{% endif %}

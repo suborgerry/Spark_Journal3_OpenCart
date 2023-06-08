@@ -1,0 +1,35 @@
+{#<div class="_1ip0g651 _1fragem1b _1fragemaf _1fragem1z _1fragem2g">#}
+    <section aria-label="{{ text_checkout_shipping_address }}" class="_1fragem15 _1fragemaf" id="simplecheckout_shipping_address" {{ hide ? 'data-hide="true"' : '' }} {{ display_error and has_error ? 'data-error="true"' : '' }}>
+        <div class="_1ip0g651 _1fragem1b _1fragemaf _1fragem1o _1fragem25">
+            <h2 class="_1fragemaf n8k95w3">{{ text_checkout_shipping_address }}</h2>
+            <div class="_1ip0g651 _1fragem1b _1fragemaf _1fragem1o _1fragem25">
+                <div id="shippingAddressForm">
+                    <div aria-hidden="false" class="pxSEU">
+                        <div class="_1ip0g651 _1fragem1b _1fragemaf _1fragem1o _1fragem25">
+                            {% for row in rows %}
+                                {{ row }}
+                            {% endfor %}
+                            {% for row in hidden_rows %}
+                                {{ row }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{#</div>#}
+{#<div class="simplecheckout-block"#}
+{#     id="simplecheckout_shipping_address" {{ hide ? 'data-hide="true"' : '' }} {{ display_error and has_error ? 'data-error="true"' : '' }}>#}
+{#    {% if display_header %}#}
+{#        <div class="checkout-heading panel-heading">{{ text_checkout_shipping_address }}</div>#}
+{#    {% endif %}#}
+{#    <div class="simplecheckout-block-content">#}
+{#        {% for row in rows %}#}
+{#            {{ row }}#}
+{#        {% endfor %}#}
+{#        {% for row in hidden_rows %}#}
+{#            {{ row }}#}
+{#        {% endfor %}#}
+{#    </div>#}
+{#</div>#}

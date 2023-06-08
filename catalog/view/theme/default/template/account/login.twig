@@ -1,0 +1,93 @@
+{{ header }}
+<main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1">
+  <div class="container">
+    <div class="breadcrumb-wrapper">
+    <ul class="breadcrumb">
+      {% for breadcrumb in breadcrumbs %}
+        <li class="item is-active"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-chevron-right" viewBox="0 0 478.448 478.448"><g><g>
+                <polygon points="131.659,0 100.494,32.035 313.804,239.232 100.494,446.373 131.65,478.448 377.954,239.232"></polygon>
+              </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+
+      <div class="page page-login">
+        <div class="row">
+          <div class="col-12 col-sm-6 mb-5">
+              {% if success %}
+{#              <div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> </div>#}
+                <div class="form-message form-message--success " id="ResetSuccess" tabindex="-1">
+                  {{ success }}
+                </div>
+              {% endif %}
+              {% if error_warning %}
+              <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}</div>
+              {% endif %}
+
+            <div id="CustomerLoginForm" class="form-vertical">
+              <h1 id="LoginHeading" class="loginTitle">Customer Login</h1>
+              <p class="text-link-hover"><strong>Continue as a guest</strong></p>
+              <form method="post" action="{{ action }}" id="customer_login" accept-charset="UTF-8" data-login-with-shop-sign-in="true" novalidate="novalidate" >
+                <input type="hidden" name="form_type" value="customer_login"><input type="hidden" name="utf8" value="✓">
+{#                {% if error_warning %}#}
+{#                <div class="form-message form-message--error">#}
+{#                  <h2 class="h3 form-message__title " data-form-status="">Please adjust the following:</h2>#}
+{#                  <div class="errors"><ul><li>{{ error_warning }}</li></ul></div>#}
+{#                </div>#}
+{#                {% endif %}#}
+                <label for="CustomerEmail" class="form-label">{{ entry_email }}<em>*</em></label>
+                <input  type="email" name="email" value="{{ email }}" placeholder="{{ entry_email }}" id="input-email" class="form-control"  autocomplete="email" autocorrect="off" autocapitalize="off" aria-invalid="true">
+                <label for="input-password" class="form-label">{{ entry_password }}<em>*</em></label>
+                <input type="password" value="{{ password }}" name="password" class="form-control" id="input-password" placeholder="{{ entry_password }}" aria-invalid="true">
+                <div class="button-group">
+                  <input type="submit" class="btn btn--secondary" value="{{ button_login }}">
+                  <div class="RecoverPassword-wrapper">
+                    <a href="{{ forgotten }}" id="RecoverPassword">{{ text_forgotten }}</a>
+                  </div>
+                </div>
+                {% if redirect %}
+                  <input type="hidden" name="redirect" value="{{ redirect }}" />
+                {% endif %}
+              </form>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-6">
+            <div class="form-vertical" id="CustomerRegisterForm">
+              <h1 class="loginTitle">Create a new account</h1>
+                        <div class="well">
+                          <p><strong>{{ text_register }}</strong></p>
+                          <p>{{ text_register_account }}</p>
+                          <a href="{{ register }}" class="btn btn--secondary-accent btn--big">{{ button_continue }}</a></div>
+            </div>
+          </div>
+{#          <div class="col-12 col-sm-6">#}
+{#            <div class="form-vertical" id="CustomerRegisterForm">#}
+{#              <h1 class="loginTitle">Create a new account</h1>#}
+{#              <p><strong>Register Account</strong></p>#}
+{#              <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.</p><form method="post" action="/account" id="RegisterForm" accept-charset="UTF-8" data-login-with-shop-sign-up="true" novalidate="novalidate" onsubmit="window.Shopify.recaptchaV3.addToken(this, &quot;create_customer&quot;); return false;"><input type="hidden" name="form_type" value="create_customer"><input type="hidden" name="utf8" value="✓">#}
+{#                <label for="RegisterForm-FirstName" class="form-label">First Name<em>*</em></label>#}
+{#                <input type="text" name="customer[first_name]" id="RegisterForm-FirstName" autocomplete="given-name" class="form-control">#}
+
+{#                <label for="RegisterForm-LastName" class="form-label">Last Name<em>*</em></label>#}
+{#                <input type="text" name="customer[last_name]" id="RegisterForm-LastName" autocomplete="family-name" class="form-control">#}
+
+{#                <label for="RegisterForm-email" class="form-label">Email<em>*</em></label>#}
+{#                <input type="email" name="customer[email]" id="RegisterForm-email" class="form-control" autocorrect="off" autocapitalize="off" autocomplete="email" aria-required="true"><label for="RegisterForm-password" class="form-label">Password<em>*</em></label>#}
+{#                <input type="password" name="customer[password]" id="RegisterForm-password" class="form-control" aria-required="true"><div class="button-group">#}
+{#                  <input type="submit" value="Create An Account" class="btn btn--secondary-accent btn--big">#}
+{#                </div>#}
+
+{#              </form>#}
+{#            </div>#}
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+{{ footer }}

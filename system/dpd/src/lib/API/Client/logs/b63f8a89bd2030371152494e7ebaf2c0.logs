@@ -1,0 +1,8 @@
+LOCATION: 
+http://wstest.dpd.ru/services/geography2
+REQUEST : 
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://dpd.ru/ws/geography/2015-05-20"><SOAP-ENV:Body><ns1:getParcelShops><request><auth><clientNumber>1001012185</clientNumber><clientKey>F75BDF1EEA3589CAF82D01DD75D6AFCB3F9797DA</clientKey></auth><countryCode>RU</countryCode></request></ns1:getParcelShops></SOAP-ENV:Body></SOAP-ENV:Envelope>
+
+ANSWER  : 
+

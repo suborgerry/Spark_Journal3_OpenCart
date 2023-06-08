@@ -1,0 +1,159 @@
+<div class="item item--cart" id="cart">
+  <a class="navUser-action custom" data-cart-preview-pc data-options="align:right"
+    aria-label="link">
+                                    <span class="cart-wrapper">
+                                        <svg class="icon"><use xlink:href="#icon-cart"/></svg>
+                                        <span class="countPill cart-quantity" data-cart-count>{{ cart_total_count }}</span>
+                                    </span>
+    <span class="navUser-text-wrapper">My Cart</span>
+  </a>
+  <div id="cart-dropdown" class="cart-dropdown">
+
+
+      {% if products or vouchers %}
+          <div  >
+              <div class="products-list">
+                  {% for product in products %}
+{#                      <tr>#}
+{#                          <td class="text-center">{% if product.thumb %} <a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-thumbnail" /></a> {% endif %}</td>#}
+{#                          <td class="text-left"><a href="{{ product.href }}">{{ product.name }}</a> {% if product.option %}#}
+{#                                  {% for option in product.option %} <br />#}
+{#                                      - <small>{{ option.name }} {{ option.value }}</small> {% endfor %}#}
+{#                              {% endif %}#}
+{#                              {% if product.recurring %} <br />#}
+{#                                  - <small>{{ text_recurring }} {{ product.recurring }}</small> {% endif %}</td>#}
+{#                          <td class="text-right">x {{ product.quantity }}</td>#}
+{#                          <td class="text-right">{{ product.total }}</td>#}
+{#                          <td class="text-center"><button type="button" onclick="cart.remove('{{ product.cart_id }}');" title="{{ button_remove }}" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td>#}
+{#                      </tr>#}
+
+                  <div class="items">
+                      <div class="product-on-cart">
+                          <a href="{{ product.href }}" title="{{ product.name }}" class="product-image">
+                              <img src="{{ product.thumb }}" alt="{{ product.name }}">
+                          </a>
+                          <div class="product-details"><a onclick="cart.remove('{{ product.cart_id }}');" title="{{ button_remove }}" class="btn-remove">
+                                  <span>×</span>
+                              </a>
+                              <a class="product-name" href="{{ product.href }}">{{ product.name }}</a>
+
+                              <div class="option">
+                                  {% for option in product.option %}
+                                  <span>{{ option.name }} {{ option.value }}</span>
+                                  {% endfor %}
+                              </div>
+
+                              <div class="cart-collateral">
+                                  <span class="qtt">{{ product.quantity }} X </span>
+                                  <span class="price money">
+                                      <span class="money">{{ product.price }}</span>
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  {% endfor %}
+{#                  <div class="items" id="cart-item-31244761595979"><div class="product-on-cart"><a href="/products/sagittis-dictum-seng-finibus-hauris-metusan-mauon?variant=31244761595979" title="Sagittis dictum seng finibus hauris metusan mauon" class="product-image"><img src="https://cdn.shopify.com/s/files/1/0278/4434/5931/products/exterior-2f_160x.jpg" alt="Sagittis dictum seng finibus hauris metusan mauon"></a><div class="product-details"><a href="javascript:void(0)" class="btn-remove"><span>×</span></a><a class="product-name" href="/products/sagittis-dictum-seng-finibus-hauris-metusan-mauon?variant=31244761595979">Sagittis dictum seng finibus hauris metusan mauon</a><div class="option"><span></span></div><div class="cart-collateral"><span class="qtt">1 X </span><span class="price money"><span class="money">$379.00</span></span></div></div></div></div><div class="items" id="cart-item-31244676890699"><div class="product-on-cart"><a href="/products/suspen-disseuis-rantion-convallis-udin-terdum-mamentu?variant=31244676890699" title="Suspen disseuis rantion convallis udin terdum mamentu" class="product-image"><img src="https://cdn.shopify.com/s/files/1/0278/4434/5931/products/performance-1h_160x.jpg" alt="Suspen disseuis rantion convallis udin terdum mamentu"></a><div class="product-details"><a href="javascript:void(0)" class="btn-remove"><span>×</span></a><a class="product-name" href="/products/suspen-disseuis-rantion-convallis-udin-terdum-mamentu?variant=31244676890699">Suspen disseuis rantion convallis udin terdum mamentu</a><div class="option"><span></span></div><div class="cart-collateral"><span class="qtt">1 X </span><span class="price money"><span class="money">$645.00</span></span></div></div></div></div></div>#}
+              </div>
+              <div class="summary">
+            <span class="label">
+                Total:
+            </span>
+                  <span class="price"><span class="money">{{ cart_total_sum }}</span></span>
+              </div>
+
+              <div class="actions">
+
+
+                  <div class="terms_conditions_wrapper mb-3">
+                      <input type="checkbox" id="terms-conditions-dropdowncart" value="">
+                      <label class="title" for="terms-conditions-dropdowncart">
+                          I agree with the terms and conditions
+                      </label>
+                  </div>
+
+                  <button class="btn product-btn disabled 1" onclick="window.location='{{ checkout }}'">
+{#                  <button class="btn product-btn disabled" onclick="window.location='/checkout'">#}
+                      {{ text_checkout }}
+                  </button>
+                  <a class="btn btn--secondary btn--viewCart" aria-label="view cart" href="{{ cart }}">
+{#                  <a class="btn btn--secondary btn--viewCart" aria-label="view cart" href="/cart">#}
+                      {{ text_cart }}
+                  </a>
+              </div>
+          </div>
+      {% else %}
+              <div class="page page-cart">
+                  <div data-section-id="template--14138547339339__main" data-section-type="cart-page">
+                      <div class="empty-page-content text-center">
+                          <h1>Your cart</h1>
+                          <p class="cart--empty-message">Your cart is currently empty.</p>
+                          <div class="cookie-message">
+                              <p>Enable cookies to use the shopping cart</p>
+                          </div>
+                          <a href="/" class="btn btn--has-icon-after cart__continue-btn btn--primary" aria-label="link">
+                              Continue shopping
+                              <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-arrow-right" viewBox="0 0 20 8"><path d="M15.186.445c.865.944 1.614 1.662 2.246 2.154.631.491 1.227.857 1.787 1.098v.44a9.933 9.933 0 0 0-1.875 1.196c-.606.485-1.328 1.196-2.168 2.134h-.752c.612-1.309 1.253-2.315 1.924-3.018H.77v-.986h15.577c-.495-.632-.84-1.1-1.035-1.406-.196-.306-.486-.843-.87-1.612h.743z" fill="#000" fill-rule="evenodd"></path></svg>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+      {% endif %}
+  </div>
+</div>
+
+{#<div id="cart" class="btn-group btn-block">#}
+{#    <button type="button" data-toggle="dropdown" data-loading-text="{{ text_loading }}" class="btn btn-inverse btn-block btn-lg dropdown-toggle">#}
+{#        <i class="fa fa-shopping-cart"></i>#}
+{#        <span id="cart-total">{{ text_items }}</span>#}
+{#    </button>#}
+{#    <ul class="dropdown-menu pull-right">#}
+{#        {% if products or vouchers %}#}
+{#            <li>#}
+{#                <table class="table table-striped">#}
+{#                    {% for product in products %}#}
+{#                        <tr>#}
+{#                            <td class="text-center">{% if product.thumb %} <a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-thumbnail" /></a> {% endif %}</td>#}
+{#                            <td class="text-left"><a href="{{ product.href }}">{{ product.name }}</a> {% if product.option %}#}
+{#                                    {% for option in product.option %} <br />#}
+{#                                        - <small>{{ option.name }} {{ option.value }}</small> {% endfor %}#}
+{#                                {% endif %}#}
+{#                                {% if product.recurring %} <br />#}
+{#                                    - <small>{{ text_recurring }} {{ product.recurring }}</small> {% endif %}</td>#}
+{#                            <td class="text-right">x {{ product.quantity }}</td>#}
+{#                            <td class="text-right">{{ product.total }}</td>#}
+{#                            <td class="text-center"><button type="button" onclick="cart.remove('{{ product.cart_id }}');" title="{{ button_remove }}" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td>#}
+{#                        </tr>#}
+{#                    {% endfor %}#}
+{#                    {% for voucher in vouchers %}#}
+{#                        <tr>#}
+{#                            <td class="text-center"></td>#}
+{#                            <td class="text-left">{{ voucher.description }}</td>#}
+{#                            <td class="text-right">x&nbsp;1</td>#}
+{#                            <td class="text-right">{{ voucher.amount }}</td>#}
+{#                            <td class="text-center text-danger"><button type="button" onclick="voucher.remove('{{ voucher.key }}');" title="{{ button_remove }}" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td>#}
+{#                        </tr>#}
+{#                    {% endfor %}#}
+{#                </table>#}
+{#            </li>#}
+{#            <li>#}
+{#                <div>#}
+{#                    <table class="table table-bordered">#}
+{#                        {% for total in totals %}#}
+{#                            <tr>#}
+{#                                <td class="text-right"><strong>{{ total.title }}</strong></td>#}
+{#                                <td class="text-right">{{ total.text }}</td>#}
+{#                            </tr>#}
+{#                        {% endfor %}#}
+{#                    </table>#}
+{#                    <p class="text-right"><a href="{{ cart }}"><strong><i class="fa fa-shopping-cart"></i> {{ text_cart }}</strong></a>&nbsp;&nbsp;&nbsp;#}
+{#                        <a href="{{ checkout }}"><strong><i class="fa fa-share"></i> {{ text_checkout }}</strong></a></p>#}
+{#                </div>#}
+{#            </li>#}
+{#        {% else %}#}
+{#            <li>#}
+{#                <p class="text-center">{{ text_empty }}</p>#}
+{#            </li>#}
+{#        {% endif %}#}
+{#    </ul>#}
+{#</div>#}
